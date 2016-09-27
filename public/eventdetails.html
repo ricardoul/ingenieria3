@@ -1,0 +1,34 @@
+<!-- myEvent directive template - names/data bind to directive -->
+
+<!-- FEATURED - START - END - FIELDS -->
+<div class="row">
+    <div class="small-2 columns">
+        <input type="checkbox" ng-checked="{{ featured }}"> Featured
+    </div>
+    <div class="small-4 columns">
+        Start Date: {{ start | date }}
+    </div>
+    <div class="small-6 columns">
+        End Date: {{ end | date }}
+    </div>
+</div>
+
+<!-- DESCRIPTION FIELD -->
+<div class="row">
+    <div class="small-10 columns">Description
+        <textarea class="small-11 columns">{{description}}</textarea>
+    </div>
+</div>
+<!-- CATEGORY - CREATED/UPDATED FIELDS -->
+<div class="row">
+    <div class="small-3 columns">
+        Category: {{category}}
+    </div>
+    <div class="small-4 columns">
+        Created: {{ created | date : 'medium' }}
+    </div>
+    <div class="small-5 columns">
+        Updated: {{ updated | date : 'medium' }}
+    </div>
+    <br>
+</div>

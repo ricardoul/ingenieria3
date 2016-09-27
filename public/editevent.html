@@ -1,0 +1,56 @@
+<h1 class="center-title">Edit an Event</h1>
+
+<!-- SUCCESS/FAIL MESSAGE FOR EDITING AN EVENT -->
+<div data-alert class="alert-box success radius"
+ng-repeat="alert in alerts" type="{{alert.type}}">{{alert.message}}
+<a ng-click="closeAlert($index)" class="close">&times;</a>
+</div>
+
+<form name="editEventForm" ng-submit="editEventForm.$valid && editEvent()">
+    <!-- TITLE  -->
+    <div class="row">
+        <div class="small-12 columns">Title
+            <input ng-model="event.eventTitle" required autofocus/>
+        </div>
+    </div>
+
+    <!-- CATEGORY -->
+    <div class="row">
+        <div class="small-5 columns">Category
+            <input type="text" ng-model="event.category"/>
+        </div>
+    </div>
+
+    <!-- START - END -->
+    <div class="row">
+        <div class="small-5 columns">Start Date
+            <input type="date" ng-model="event.startDate" required />
+        </div>
+        <div class="small-6 columns">End Date
+            <input type="date" ng-model="event.endDate" required />
+        </div>
+    </div>
+
+    <!-- DESCRIPTION  -->
+    <div class="row">
+        <div class="small-12 columns">Description
+            <textarea ng-model="event.description"></textarea>
+        </div>
+    </div>
+
+    <!-- FEATURED -->
+    <div class="row">
+        <div class="small-4 columns">
+            <input type="checkbox" ng-model="event.featuredFlag"> Featured
+        </div>
+    </div>
+
+    <!-- SUBMIT BUTTON -->
+    <div class="row">
+        <div class="small-2 columns">
+            <!-- {{editEventForm.$valid}} -->
+            <input
+            type="submit" id="submit" class="button" value="Edit Event">
+        </input>
+    </div>
+</form>
