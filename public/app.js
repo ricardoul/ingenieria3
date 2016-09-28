@@ -5,6 +5,7 @@ var myApp = angular.module('EventCMS', [
     'firebase'
 ]);
 
+
 myApp.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     //     $logProvider.debugEnabled(true);
 });
