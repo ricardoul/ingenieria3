@@ -2,7 +2,9 @@
 
 var myApp = angular.module('EventCMS', [
     'ui.router',
-    'firebase'
+    'firebase',
+    'ui.bootstrap',
+    'jlareau.pnotify'
 ]);
 
 

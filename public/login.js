@@ -9,6 +9,16 @@ angular.module('EventCMS')
         //save the ID of the event to edit that was passed from the list view
         var editEventId = $stateParams.passId;
         $log.info("stateparms", editEventId);
+        $scope.isRegister = false
+
+        $scope.selectType = function(type){
+            if(type == 'register'){
+                $scope.isRegister = true
+            }else{
+                $scope.isRegister = false
+            }
+
+        }
 
         //Firebase callback to register sync fail/success
         var onComplete = function(error) {
