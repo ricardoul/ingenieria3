@@ -34,7 +34,8 @@
 
       <span class="alert">Usuario y/o contraseña incorrectas</span>
       <a class="link" href="#">¿Olvidó su contraseña?</a>
-      <button type="button" class="log-btn" ng-click="login()">Log in</button>
+      <button type="button" class="log-btn" ng-if="isRegister == false"ng-click="login()">Log in</button>
+       <button type="button" class="log-btn" ng-if="isRegister == true" ng-click="signup()">Sing Up</button>
     </div>
 
   </body>

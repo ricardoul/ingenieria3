@@ -1,0 +1,43 @@
+    <div class="jumbotron text-center" id="map" style="height:320px">
+    <script>
+    function myMap() {
+    var myCenter = new google.maps.LatLng(-34.88879,-56.15889);
+    var mapCanvas = document.getElementById("map");
+    var mapOptions = {center: myCenter, zoom: 15};
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+    var marker = new google.maps.Marker({position:myCenter});
+    marker.setMap(map);
+    }</script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+    </div>
+      
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6" ng-repeat="event in events">
+            <h3>{{event.name}}</h3>
+            <p>Comida del evento, deatlles del evento</p>
+            <p>Direccion del evento y fecha de realizacion {{event.location}}</p>
+            <p>Comensales<p>
+            <button ng-click="asistirEvento()">Reservar</button>
+            <!--Barra de progreso de que tan lleno esta un evento-->
+
+    <div id="myProgress">
+    <div id="myBar">
+    <div id="label">
+    </div>
+    </div>
+    </div>
+
+    <br>
+
+
+    </div>
+        <div class="col-sm-6">
+                <h3>Mis proximos eventos</h3>
+                <div class="list-group">
+                <a href="#" class="list-group-item">Evento Lunes 4</a>
+                <a href="#" class="list-group-item">Evento 2</a>
+                <a href="#" class="list-group-item">Otro evento</a>
+            </div>
+    </div>
