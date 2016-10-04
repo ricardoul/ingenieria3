@@ -108,6 +108,10 @@ h1 {
   float: left;
 }
 
+#logincont {
+  margin-top: 10%;
+}
+
 @-moz-keyframes wrong-log {
   0%, 100% {
     left: 0px;
