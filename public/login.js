@@ -2,7 +2,7 @@ angular.module('EventCMS')
 
 .controller("LoginCtrl", [
     "$scope", "$state", "$log", "$timeout", "$firebaseArray", "alertsManager", "$rootScope", "$stateParams",
-    function($scope, $state, $log, $timeout, $firebaseArray, alertsManager, $rootScope, $stateParams)  {
+    function($scope, $state, $log, $timeout, $firebaseArray, alertsManager, $rootScope, $stateParams, notificationService)  {
 
         $log.info("EditCtrl ran");
 
@@ -32,10 +32,23 @@ angular.module('EventCMS')
         };
 
         //get reference to Firebase events array
-        var ref = new Firebase("https://dazzling-torch-1941.firebaseio.com/events");
+        var ref = new Firebase("https://cometoeat-d057f.firebaseio.com");
 
         //scope event variable to sync with inputs in the view
         $scope.event = {};
+
+        $scope.login = function(){
+            ref.authWithPassword({
+              email    : $scope.username,
+              password : $scope.password
+            }, function(error, authData) {
+              if (error) {
+                notificationService.error("Sorry try again")
+              } else {
+               notificationService.success("Authenticated successfully");
+              }
+            });
+        }
 
         //declare global variable for Updated date
         var unixUpdatedDate = "";

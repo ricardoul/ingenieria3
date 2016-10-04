@@ -18,7 +18,7 @@
 
       <img src="img/logo.png" alt="logo">
       <div class="form-group ">
-       <input type="text" class="form-control" placeholder="correo@dominio.com " id="UserName">
+       <input type="text" ng-model="username" class="form-control" placeholder="correo@dominio.com " id="UserName">
        <i class="fa fa-user"></i>
       </div>
       <div class="form-group" ng-if="isRegister == true">
@@ -28,13 +28,13 @@
           </select>
       </div>
       <div class="form-group log-status">
-       <input type="password" class="form-control" placeholder="Contraseña" id="Passwod">
+       <input type="password" ng-model="password" class="form-control" placeholder="Contraseña" id="Passwod">
        <i class="fa fa-lock"></i>
       </div>
 
       <span class="alert">Usuario y/o contraseña incorrectas</span>
       <a class="link" href="#">¿Olvidó su contraseña?</a>
-      <button type="button" class="log-btn" >Log in</button>
+      <button type="button" class="log-btn" ng-click="login()">Log in</button>
     </div>
 
   </body>
