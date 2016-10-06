@@ -6,6 +6,43 @@ angular.module('EventCMS')
 
         $log.info("AddCtrl ran");
 
+
+
+        $scope.addAssistant = function(cant){
+            $scope.lugaresCantidades[cant] +=1
+        }
+
+        $scope.removeAssistant = function(cant){
+            $scope.lugaresCantidades[cant] -=1
+        }
+
+        $scope.checkNumber = function(cant){
+            if($scope.lugaresCantidades[cant] < 1){
+                $scope.lugaresCantidades[cant] = 1
+                return
+            }
+            if($scope.lugaresCantidades[cant] > 300){
+                $scope.lugaresCantidades[cant] = 300
+                return
+            }
+        }
+
+        $scope.checkCantUpper = function(cant, cantVar){
+            return ($scope.lugaresCantidades[cantVar] >= cant)
+        }
+        
+        $scope.checkCantLower = function(cant, cantVar){
+           return ($scope.lugaresCantidades[cantVar] <= cant)
+        }
+
+        $scope.categories =['Bebidas','Cafetería','Calzones','Carnes','Celíacos','Chivitos','Comida Árabe','Comida Armenia','Comida China','Comida Japonesa','Comida Mexicana','Comida Peruana','Comida Vegetariana','Comida Venezolana','Desayunos','Empanadas','Ensaladas','Hamburguesas','Helados','Lehmeyun','Licuados y Jugos','Menú del día','Milanesas','Parrilla','Pastas','Pescados y Mariscos','Picadas','Pizzas','Postres','Sándwiches','Sushi','Tartas','Viandas y Congelados','Woks','Wraps']
+
+        $scope.selectedCategorie = 'Carnes'
+
+        $scope.cantidades=['maxima', 'minima']
+
+        $scope.lugaresCantidades = {maxima: 50, minima : 1}
+
         //Firebase callback to register sync fail/success
         var onComplete = function(error) {
             if (error) {
@@ -20,7 +57,7 @@ angular.module('EventCMS')
         };
 
         //create Firebase events array
-        var ref = new Firebase("https://dazzling-torch-1941.firebaseio.com/events");
+        var ref = {}
 
         //define empty event/ database schema
         var EMPTY_EVENT = {
