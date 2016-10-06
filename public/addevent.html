@@ -1,57 +1,238 @@
-<h1 class="center-title">Add an Event</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-<!-- SUCCESS/FAIL MESSAGE FOR ADDING AN EVENT -->
-<div data-alert class="alert-box success radius"
-ng-repeat="alert in alerts" type="{{alert.type}}">{{alert.message}}
-<a ng-click="closeAlert($index)" class="close">&times;</a>
-</div>
+<head>
 
-<form name="addEventForm" ng-submit="addEventForm.$valid && addEvent()">
-    <!-- TITLE  -->
-    <div class="row">
-        <div class="small-12 columns">Title
-            <input ng-model="newEvent.eventTitle" required autofocus/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Come to eat!</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+
+    <!-- Custom CSS -->
+    <link href="css/half-slider.css" rel="stylesheet">
+    <link href="css/spinner.css" rel="stylesheet">
+    
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Come to eat!</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">Nosotros</a>
+                    </li>
+                    <li>
+                        <a href="#">Eventos</a>
+                    </li>
+                    <li>
+                        <a href="#">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
-    </div>
+        <!-- /.container -->
+    </nav>
 
-    <!-- CATEGORY -->
-    <div class="row">
-        <div class="small-5 columns">Category
-            <input type="text" ng-model="newEvent.category"/>
-        </div>
-    </div>
+    <!-- Half Page Image Background Carousel Header -->
+    <header id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
 
-    <!-- START - END -->
-    <div class="row">
-        <div class="small-5 columns">Start Date
-            <input type="date" ng-model="newEvent.startDate" required />
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <!-- Set the first background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('C:/Users/Usuario/Documents/2016-09-27.jpg');"></div>
+                <!--<img class="img-responsive img-full" src="C:/Users/Usuario/Documents/2016-09-27.jpg" alt=""></div>-->
+            </div>
         </div>
-        <div class="small-6 columns">End Date
-            <input type="date" ng-model="newEvent.endDate" required />
-        </div>
-    </div>
 
-    <!-- DESCRIPTION  -->
-    <div class="row">
-        <div class="small-12 columns">Description
-            <textarea ng-model="newEvent.description"></textarea>
-        </div>
-    </div>
+    </header>
+</br>
+</br>
+    <!-- Page Content -->
+    <div class="container">
 
-    <!-- FEATURED -->
-    <div class="row">
-        <div class="small-4 columns">
-            <input type="checkbox" ng-model="newEvent.featuredFlag"> Featured
-        </div>
-    </div>
+        <div class="row">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Ubicación:</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control"  placeholder="Ingresa la ubicación del evento">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">Lugar es cerrado:</label>
+            <div class="col-sm-10">
+                <div class="radio">
+                  <label><input type="radio" name="optradio">SI</label>
+                  <label><input type="radio" name="optradio">NO</label>
+                </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col col-sm-2" for="pwd">Capacidad Máxima:</label>
+            <div class="col-sm-3">
+                <div class="input-group number-spinner">
+                    <span class="input-group-btn data-dwn">
+                        <button class="btn btn-default btn-info" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
+                    </span>
+                    <input type="text" class="form-control text-center" value="1" min="-10" max="40">
+                    <span class="input-group-btn data-up">
+                        <button class="btn btn-default btn-info" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
+                    </span>
+                </div>      
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">Capacidad Mínima:</label>
+            <div class="col-sm-3">
 
-    <!-- SUBMIT BUTTON -->
-    <!-- {{addEventForm.$valid}} -->
-    <div class="row">
-        <div class="small-2 columns">
-            <input
-            type="submit" id="submit" class="button" ng-disabled="buttonDisabled" ng-init="buttonValue = 'Add Event'" value="{{buttonValue}}">
-        </input>
+  
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">Categoría:</label>
+            <div class="col-sm-3">
+                <select id="nombreCliente" name="nombreCliente"
+                        class="form-control input-sm" style="width: 100%"
+                        onchange="onchangeNombreCliente();">
+                </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">Comida:</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control"/>      
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">Día y hora del Evento:</label>
+                <div class="col-sm-4 controls input-append date form_datetime" data-date="2016-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                    <input size="28" style="border-radius: 4px; height:34px" type="text" value="" readonly>
+                    <span class="add-on"><i class="icon-remove glyphicon glyphicon-remove"></i></span>
+                    <span class="add-on"><i class="icon-th glyphicon glyphicon-calendar"></i></span>
+                </div>
+                <input type="hidden" id="dtp_input1" value="" /><br/>
+            </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">Precio del ticket:</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control"/>      
+            </div>
+          </div>
+
+
+        
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default">Crear Evento</button>
+            </div>
+          </div>    
+        </form> 
+
+        </div>
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Todos los derechos reservados por el Riky</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+        
+
     </div>
-</div>
-</form>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+
+
+    <script type="text/javascript" src="js/jquery.min.js" charset="UTF-8"></script> 
+
+<script type="text/javascript" src="js/spinner.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    
+
+
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.es.js" charset="UTF-8"></script>
+
+
+    <!-- Script to Activate the Carousel -->
+    <script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1
+    });
+    $('.form_date').datetimepicker({
+        language:  'es',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+    $('.form_time').datetimepicker({
+        language:  'es',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 1,
+        minView: 0,
+        maxView: 1,
+        forceParse: 0
+    });
+   </script>
+
+
+</body>
+
+</html>
