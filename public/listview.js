@@ -6,11 +6,19 @@ angular.module('EventCMS')
         $log.info("ListCtrl ran");
 
         //create Firebase events array
-        var ref = new Firebase("https://dazzling-torch-1941.firebaseio.com/events");
+        $scope.events = [{"id":"algo"}]
+       // var userId = firebase.auth().currentUser.uid;
+       var userId = "laca"
 
-        // create a synchronized array for events
-        $scope.events = $firebaseArray(ref);
 
-        $log.log("scope.events",$scope.events);
+	   function updateEvents(){
+		   	firebase.database().ref('/users/' + userId+'/events').once('value').then(function(snapshot) {
+			  	var arr = _.values(snapshot.val());
+			  	$scope.events = arr
+			  	$scope.$apply()
+			  // ...
+			});
+	   }
+	   updateEvents()
 
 }]);

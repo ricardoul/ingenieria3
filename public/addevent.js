@@ -1,8 +1,8 @@
 angular.module('EventCMS')
 
 .controller("AddCtrl", [
-    "$rootScope", "$scope", "$timeout", "$state", "$log","$firebaseArray", "alertsManager",
-    function($rootScope, $scope, $timeout, $state, $log, $firebaseArray, alertsManager) {
+    "$rootScope", "$scope", "$timeout", "$state", "$log","$firebaseArray", "alertsManager", "notificationService",
+    function($rootScope, $scope, $timeout, $state, $log, $firebaseArray, alertsManager, notificationService) {
 
         $log.info("AddCtrl ran");
 
@@ -91,7 +91,6 @@ angular.module('EventCMS')
 
         //addEvent function will add a newEvent based on database schema
         $scope.addEvent = function() {
-            buttonClickDisable();
             transform_dates_to_unix($scope.newEvent.startDate,$scope.newEvent.endDate);
 
             $scope.newEvent = {
@@ -102,14 +101,20 @@ angular.module('EventCMS')
                 description: $scope.newEvent.description,
                 featuredFlag: $scope.newEvent.featuredFlag,
                 createdAt:  unixCurrent,
-                updatedAt: " "
+                updatedAt: " ",
+                status: "open"
             };
+            notificationService.success("Evento creado")
+            // Get a key for a new Post.
+            var newPostKey = firebase.database().ref().child('events').push().key;
 
-            //Firebase push method to save newEvent data to array
-            var newEventAdded = ref.push($scope.newEvent,onComplete);
+              // Write the new post's data simultaneously in the posts list and the user's post list.
+            var updates = {};
+            updates['/events/' + newPostKey] = $scope.newEvent;
+            updates['/users/laca/events/'+ newPostKey] = $scope.newEvent;
+            return firebase.database().ref().update(updates);
 
-            //call setup empty state to reset the entry form after new event is added
-            setup_empty_event_state();
+            
         };
 
         //call setup empty state to reset the entry form

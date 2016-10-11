@@ -17,6 +17,12 @@
 <div class="row">
    <form class="form-horizontal">
       <div class="form-group">
+         <label class="control-label col-sm-2" for="email">Titulo:</label>
+         <div class="col-sm-6">
+            <input type="text" class="form-control"  ng-model="newEvent.eventTitle" placeholder="Ingresa la ubicación del evento">
+         </div>
+      </div>
+      <div class="form-group">
          <label class="control-label col-sm-2" for="email">Ubicación:</label>
          <div class="col-sm-6">
             <input type="text" class="form-control"  placeholder="Ingresa la ubicación del evento">
@@ -60,12 +66,14 @@
       </div>
       <div class="form-group">
          <label class="control-label col-sm-2" for="pwd">Día y hora del Evento:</label>
-         <div class="col-sm-4 controls input-append date form_datetime" data-date="2016-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
-            <input size="28" style="border-radius: 4px; height:34px" type="text" value="" readonly>
-            <span class="add-on"><i class="icon-remove glyphicon glyphicon-remove"></i></span>
-            <span class="add-on"><i class="icon-th glyphicon glyphicon-calendar"></i></span>
+         <div class="small-5 columns">Start Date
+            <input type="date" ng-model="newEvent.startDate" required />
+            <input type="time" ng-model="newEvent.startHour" name="time" min="9:00" max="17:00" step="900">
          </div>
-         <input type="hidden" id="dtp_input1" value="" /><br/>
+         <div class="small-6 columns">End Date
+            <input type="date" ng-model="newEvent.endDate" required />
+            <input type="time" ng-model="newEvent.endHour" required />
+         </div>
       </div>
       <div class="form-group">
          <label class="control-label col-sm-2" for="pwd">Precio del ticket:</label>
@@ -75,7 +83,7 @@
       </div>
       <div class="form-group">
          <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">Crear Evento</button>
+            <button type="submit" class="btn btn-default" ng-click="addEvent()">Crear Evento</button>
          </div>
       </div>
    </form>
