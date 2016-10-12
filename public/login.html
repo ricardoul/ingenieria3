@@ -19,22 +19,22 @@
 
         <div ng-if="isRegister == true">
           <div class="form-group ">
-            <input type="text" ng-model="name" class="form-control" placeholder="Nombre " id="UserName">
+            <input type="text"  ng-model="newUser.name" class="form-control" placeholder="Nombre " id="Name" required>
             <i class="fa fa-user"></i>
           </div>
 
           <div class="form-group ">
-            <input type="text" ng-model="lastname" class="form-control" placeholder="Apellido " id="LastName">
+            <input type="text" ng-model="newUser.lastName" class="form-control" placeholder="Apellido " id="LastName" required>
             <i class="fa fa-user"></i>
           </div>
 
           <div class="form-group ">
-            <input type="date" ng-model="birthdate" class="form-control" placeholder="dd/mm/yyyy " id="UserName">
+            <input type="date" ng-model="newUser.birthDate" class="form-control" placeholder="dd/mm/yyyy " id="BirthDate" required>
             <i class="fa fa-calendar"></i>
           </div>
 
           <div class="form-group" ng-if="isRegister == true">
-              <select class="form-control">
+              <select ng-model="newUser.type" class="form-control">
                     <option>Cocinero</option>
                     <option>Comensal</option>
               </select>
@@ -43,19 +43,19 @@
 
         <div>
           <div class="form-group ">
-            <input type="text" ng-model="username" class="form-control" placeholder="correo@dominio.com " id="UserName">
+            <input type="text" ng-model="username" class="form-control" placeholder="correo@dominio.com " id="UserName" required>
             <i class="fa fa-envelope"></i>
           </div>
 
           <div class="form-group log-status">
-            <input type="password" ng-model="password" class="form-control" placeholder="Contraseña" id="Passwod">
+            <input type="password" ng-model="password1" class="form-control" placeholder="Contraseña" id="Passwod" required>
             <i class="fa fa-lock"></i>
           </div>
         </div>
 
         <div  ng-if="isRegister == true">
           <div class="form-group log-status">
-            <input type="password" ng-model="password" class="form-control" placeholder="Repita Contraseña" id="PasswodRepit">
+            <input type="password" ng-model="password2"class="form-control" placeholder="Repita Contraseña" id="PasswodRepit" required>
             <i class="fa fa-lock"></i>
           </div>
         </div>
@@ -63,8 +63,8 @@
         <span class="alert">Usuario y/o contraseña incorrectas</span>
         <a class="link" href="#" ng-if="isRegister == false">¿Olvidó su contraseña?</a>
 
-        <button type="button" class="log-btn" ng-click="login()" ng-if="isRegister == false">Log in</button>
-        <button type="button" class="log-btn" ng-click="singnup()" ng-if="isRegister == true">Sing up</button>
+        <input type="submit" class="log-btn" ng-click="login()" ng-if="isRegister == false" value="Log in"></input>
+        <input type="submit" class="log-btn" ng-click="signup()" ng-if="isRegister == true" value="Sign Up!"></input>
     </div>
 
   </body>
