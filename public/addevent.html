@@ -1,5 +1,7 @@
 <!-- Half Page Image Background Carousel Header -->
 <!-- Page Content -->
+</br>
+</br>
 <div class="container">
 <div class="row">
    <form class="form-horizontal">
@@ -31,17 +33,20 @@
                <span class="input-group-btn data-dwn">
                <button  ng-click="removeAssistant(cant)" ng-disabled="checkCantLower(1,cant)"  class="btn btn-default btn-info" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
                </span>
-               <input  ng-change="checkNumber()" type="number" class="form-control text-center" ng-model="lugaresCantidades[cant]" value="1" >
+               <input  ng-change="checkNumber(cant)" type="number" class="form-control text-center" ng-model="lugaresCantidades[cant]" value="1" >
                <span class="input-group-btn data-up">
                <button  ng-click="addAssistant(cant)" ng-disabled="checkCantUpper(300,cant)" class="btn btn-default btn-info" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
                </span>
             </div>
          </div>
       </div>
+            
+      
+      
       <div class="form-group">
          <label class="control-label col-sm-2" for="pwd">Categoría:</label>
          <div class="col-sm-3">
-            <select class="form-control col-sm-2" ng-model="selectedCategorie" ng-options="cat for cat in categories">
+            <select class="form-control col-sm-2" ng-model="newEvent.category" ng-options="cat for cat in categories">
             </select>
          </div>
       </div>
