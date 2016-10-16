@@ -24,9 +24,42 @@ angular.module('EventCMS')
             }
 
         ]
+		
+		$scope.mostrarEventos = function(){
+			//Desplegar los eventos a los que vaya a asistir en la lista de eventos
+			//Desplegar todos los eventos en el mapa de eventos
+        }
 
-        $scope.asistirEvento = function(){
+        $scope.seleccionarEvento = function(){
+			//Despliega en el cuadro de evento el evento seleccionado de la lista de eventos
+			
+            //eventTitle
+            //startDate
+            //endDate
+            //category
+            //description
+            //featuredFlag
+            //createdAt
+        }
 
+        $scope.asistirEvento = function(Event){
+			//El boton asigna al usuario como comensal y de paso muestra como aumenta la cantidad de comensales en el evento
+			//Si menor a minComenzales barra en verde sino barra en amarillo si mayor a maxComensales rojo y dice "No hay lugares disponibles"
+			var elem = document.getElementById("myBar");
+			var width = eventSelect.Comensales;
+			var id = setInterval(frame, 10);
+			width = Event.maxComensales
+			function frame() {
+					if (width >= 100) {
+						document.getElementById("label").innerHTML = 'No hay espacio disponible';
+						clearInterval(id);
+						//Setear el nuevo tamanio
+					} else {
+						width++;
+						elem.style.width = width + '%';
+						//Setear el nuevo tamanio
+					}
+			}
             
         }
 
