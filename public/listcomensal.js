@@ -9,7 +9,18 @@ angular.module('EventCMS')
         //save the ID of the event to edit that was passed from the list view
         var editEventId = $stateParams.passId;
         $log.info("stateparms", editEventId);
-
+		
+		//define empty event/ database schema
+        var EMPTY_EVENT = {
+            eventTitle: " ",
+            startDate: new Date(),
+            endDate: new Date(),
+            category: " ",
+            description: " ",
+            featuredFlag: " ",
+            createdAt:  " ",
+            updatedAt: " "
+        };
 
         $scope.events = [
             {
@@ -50,7 +61,7 @@ angular.module('EventCMS')
 			var id = setInterval(frame, 10);
 			width = Event.maxComensales
 			function frame() {
-					if (width >= 100) {
+					if (width >= Event.maxComensales) {
 						document.getElementById("label").innerHTML = 'No hay espacio disponible';
 						clearInterval(id);
 						//Setear el nuevo tamanio
@@ -60,7 +71,6 @@ angular.module('EventCMS')
 						//Setear el nuevo tamanio
 					}
 			}
-            
         }
 
         //Firebase callback to register sync fail/success
