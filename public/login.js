@@ -80,7 +80,7 @@ angular.module('EventCMS')
                 notificationService.error("La fecha de nacimiento no puede ser vacia");
                 return false
             }
-            if (!$scope.name ||$scope.name === 0){
+            if (!$scope.username ||$scope.username === 0){
                 notificationService.error("El correo no puede ser vacio");
                 return false
             }
