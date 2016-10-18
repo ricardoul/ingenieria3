@@ -7,7 +7,7 @@ angular.module('EventCMS')
         $log.info("LoginCtrl ran");
 
         $scope.login = function(){
-            firebase.auth().signInWithEmailAndPassword($scope.username, $scope.password).then(function() {
+            firebase.auth().signInWithEmailAndPassword($scope.username, $scope.passwordq).then(function() {
                 notificationService.success("Login "+ $scope.username +" correctamente")
             }, function(error) {
                 var errorCode = error.code;
@@ -37,7 +37,7 @@ angular.module('EventCMS')
                 return
             }
 
-            firebase.auth().createUserWithEmailAndPassword($scope.username, $scope.password).then(function() {
+            firebase.auth().createUserWithEmailAndPassword($scope.username, $scope.password1).then(function() {
                 notificationService.success("Cuenta "+ $scope.username +" creada correctamente")
 
                 var userId = firebase.auth().currentUser.uid;
