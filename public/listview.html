@@ -7,14 +7,14 @@
       <div class="form-group">
          <label class="control-label col-sm-2">Filtro por Nombre</label>
          <div class="col-sm-5">
-            <input class="form-control ng-pristine ng-touched" type="text" ng-model="eventFilter.eventTitle">
+            <input class="form-control" type="text" ng-model="eventFilter.eventTitle">
          </div>   
       </div>
       </br>
       <div class="form-group">
          <label class="control-label col-sm-2">Filtro por Estado</label>
          <div class="col-sm-2">
-            <select class="form-control col-sm-2 col-md-4 ng-pristine" ng-model="eventFilter.status">
+            <select class="form-control col-sm-2 col-md-4" ng-model="eventFilter.status">
                <option>open</option>
                <option>closed</option>
             </select>
@@ -24,14 +24,14 @@
       <div class="form-group">
         <label class="control-label col-sm-2">Fecha desde</label>
         <div class="col-sm-5">
-          <input ng-model="dateFrom" type="date"/>
+          <input ng-model="dateFrom" type="date" ng-init="2000/01/01"/>
         </div>
       </div>
       </br>
       <div class="form-group">
-        <label class="control-label col-sm-2">Fecha desde</label>
+        <label class="control-label col-sm-2">Fecha hasta</label>
         <div class="col-sm-5">
-          <input ng-model="dateTo" type="date"/>
+          <input ng-model="dateTo" type="date" ng-init="2300/01/01"/>
         </div>
       </div>
       </br>
