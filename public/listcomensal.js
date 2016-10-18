@@ -21,6 +21,18 @@ angular.module('EventCMS')
             createdAt:  " ",
             updatedAt: " "
         };
+		
+		//define empty event/ database schema
+        var SELECTED_EVENT = {
+            eventTitle: " ",
+            startDate: new Date(),
+            endDate: new Date(),
+            category: " ",
+            description: " ",
+            featuredFlag: " ",
+            createdAt:  " ",
+            updatedAt: " "
+        };
 
         $scope.events = [
             {
@@ -41,16 +53,13 @@ angular.module('EventCMS')
 			//Desplegar todos los eventos en el mapa de eventos
         }
 
-        $scope.seleccionarEvento = function(){
-			//Despliega en el cuadro de evento el evento seleccionado de la lista de eventos
-			
-            //eventTitle
-            //startDate
-            //endDate
-            //category
-            //description
-            //featuredFlag
-            //createdAt
+        $scope.seleccionarEvento = function(Event){
+            SELECTED_EVENT.eventTitle: Event.eventTitle,
+            SELECTED_EVENT.startDate: Event.startDate,
+            SELECTED_EVENT.endDate: Event.endDate,
+            SELECTED_EVENT.category: Event.category,
+            SELECTED_EVENT.description: Event.description,
+            SELECTED_EVENT.featuredFlag: Event.featuredFlag,
         }
 
         $scope.asistirEvento = function(Event){
