@@ -6,19 +6,19 @@
 <div class="row">
    <form class="form-horizontal">
       <div class="form-group">
-         <label class="control-label col-sm-2" for="email">Titulo:</label>
+         <label class="control-label col-sm-2" for="">Titulo:</label>
          <div class="col-sm-6">
             <input type="text" class="form-control"  ng-model="newEvent.eventTitle" placeholder="Ingresa un titulo al evento">
          </div>
       </div>
       <div class="form-group">
-         <label class="control-label col-sm-2" for="email">Ubicación:</label>
+         <label class="control-label col-sm-2" for="">Ubicación:</label>
          <div class="col-sm-6">
             <input type="text" class="form-control"  placeholder="Ingresa la ubicación del evento">
          </div>
       </div>
       <div class="form-group">
-         <label class="control-label col-sm-2" for="pwd">Lugar es cerrado:</label>
+         <label class="control-label col-sm-2" for="">Lugar es cerrado:</label>
          <div class="col-sm-10">
             <div class="radio">
                <label><input type="radio" name="optradio">SI</label>
@@ -27,15 +27,15 @@
          </div>
       </div>
       <div class="form-group" ng-repeat="cant in cantidades">
-         <label class="control-label col col-sm-2" for="pwd">Capacidad {{cant}}:</label>
+         <label class="control-label col col-sm-2" for="">Capacidad {{cant}}:</label>
          <div class="col-sm-3">
             <div class="input-group number-spinner">
                <span class="input-group-btn data-dwn">
-               <button  ng-click="removeAssistant(cant)" ng-disabled="checkCantLower(1,cant)"  class="btn btn-default btn-info" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
+               <button  ng-click="removeAssistant(cant)" ng-model="newEvent.minAttendants" ng-disabled="checkCantLower(1,cant)"  class="btn btn-default btn-info" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
                </span>
                <input  ng-change="checkNumber(cant)" type="number" class="form-control text-center" ng-model="lugaresCantidades[cant]" value="1" >
                <span class="input-group-btn data-up">
-               <button  ng-click="addAssistant(cant)" ng-disabled="checkCantUpper(300,cant)" class="btn btn-default btn-info" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
+               <button  ng-click="addAssistant(cant)" ng-model="newEvent.maxAttendants" ng-disabled="checkCantUpper(300,cant)" class="btn btn-default btn-info" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
                </span>
             </div>
          </div>
@@ -44,20 +44,20 @@
       
       
       <div class="form-group">
-         <label class="control-label col-sm-2" for="pwd">Categoría:</label>
+         <label class="control-label col-sm-2" for="">Categoría:</label>
          <div class="col-sm-3">
             <select class="form-control col-sm-2" ng-model="newEvent.category" ng-options="cat for cat in categories">
             </select>
          </div>
       </div>
       <div class="form-group">
-         <label class="control-label col-sm-2" for="pwd">Comida:</label>
+         <label class="control-label col-sm-2" for="">Comida:</label>
          <div class="col-sm-3">
             <input type="text" class="form-control"/>      
          </div>
       </div>
       <div class="form-group">
-         <label class="control-label col-sm-2" for="pwd">Día y hora del Evento:</label>
+         <label class="control-label col-sm-2" for="">Día y hora del Evento:</label>
          <div class="small-5 columns">Start Date
             <input type="date" ng-model="newEvent.startDate" required />
             <input type="time" ng-model="newEvent.startHour" name="time" min="9:00" max="17:00" step="900">
@@ -68,7 +68,7 @@
          </div>
       </div>
       <div class="form-group">
-         <label class="control-label col-sm-2" for="pwd">Precio del ticket:</label>
+         <label class="control-label col-sm-2" for="">Precio del ticket:</label>
          <div class="col-sm-3">
             <input type="text" class="form-control"/>      
          </div>
