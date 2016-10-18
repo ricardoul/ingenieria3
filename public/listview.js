@@ -22,6 +22,11 @@ angular.module('EventCMS')
 
 	   updateEvents()
 
+
+	   $scope.dateFrom =new Date('10/01/2016 00:00:00');
+	   $scope.dateTo =new Date()
+	   
+
 }]).filter("myfilter", function() {
 		  return function(items, from, to) {
 		        var df = from; //parseDate(from);
