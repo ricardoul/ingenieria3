@@ -8,6 +8,15 @@ angular.module('EventCMS')
 
 
 
+
+
+
+
+
+
+
+
+
         $scope.addAssistant = function(cant){
             $scope.lugaresCantidades[cant] +=1
         }
