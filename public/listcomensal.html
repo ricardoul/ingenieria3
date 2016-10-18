@@ -1,63 +1,26 @@
-    <div class="jumbotron text-center" id="map" style="height:320px">
-    <script>
-    function myMap() {
-    var myCenter = new google.maps.LatLng(-34.88879,-56.15889);
-    var mapCanvas = document.getElementById("map");
-    var mapOptions = {center: myCenter, zoom: 15};
-    var map = new google.maps.Map(mapCanvas, mapOptions);
-    var marker = new google.maps.Marker({position:myCenter});
+    <div class="jumbotron text-center" id="map" style="height:320px">	
 
-	// Zoom to 9 when clicking on marker
-	google.maps.event.addListener(marker,'click',function() {  map.setZoom(9); map.setCenter(marker.getPosition());  });
-    marker.setMap(map);
-    }
-	</script>
-	
-	
-	
-	
-    <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
-    </div>
-	
-	
-    <!--Inicializar los eventos, cargarlos desde firebase-->
-	<div ng-app="" ng-init="Events=[	{eventTitle:'Orgasmo culinario',startDate:'17',endDate:'24',category:'Carne',description:'Delicate de cordero a la plancha con salsa barbakiue',createdAt:'12'},{eventTitle:'Fiesta de salchichas',startDate:'17',endDate:'24',category:'Chorizo',description:'Una tarde de panchos con los amigos',createdAt:'12'}, {eventTitle:'Juntada en lo del Riki',startDate:'17',endDate:'24',category:'Pescado',description:'Sushi de salmon acompaniado de jhonny negro',createdAt:'12'}	]">
-	</div>
-      
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-6" ng-repeat="event in Events">
-            <!--No deberia repetirse para todos los eventos sino para el evento que esta seleccionado-->
-            <h3>{{event.eventTitle}}</h3>
-            <p>{{event.category}}</p>
-            <p>{{event.description}}</p>
-            <!--Falta la direccion del evento-->
-            <p>Comensales<p>
-            <button ng-click="asistirEvento()">Reservar</button>
+      <input ng-model="eventFilter.attendants" type="text">
+      <button ng-click="eventFilter.attendants = undefined">Limpair filtro</button>
+        <div class="col-sm-6" ng-repeat="evento in events | filter:eventFilter">
+            <h3>{{evento.eventTitle}}</h3>
+            <br>
+            <span>Asistentes maximos: {{evento.maxAttendants}}</span>
+            <br>
+            <span>Asistentes minimos:{{evento.minAttendants}}</span>
+            <br>
+            <span>Asistentes inscriptos actuales {{evento.attendants.length}}</span>
+            <br>
+            <span>{{evento.status}}</span>
+            <br>
+             <span class="day"> Start Date: {{ evento.startDate | date }}</span>
+             <span class="day"> End Date: {{ evento.endDate | date }}</span>
+             <br>
+            <p>Comensales<p>{{checkAttendants(evento.attendants)}}
+            <br>
+            <button class="btn btn-sm btn-default" ng-click="asistirEvento(evento)" ng-disabled="checkReserveButton(evento)">Reservar</button>
             <!--Barra de progreso de que tan lleno esta un evento-->
-
-    <div id="myProgress">
-    <div id="myBar">
-    <div id="label">
     </div>
     </div>
     </div>
 
-    <br>
-
-
-    </div>
-        <div class="col-sm-6">
-                <h3>Mis proximos eventos</h3>
-				
-				<div class="list-group">
-					<div class="col-sm-6" ng-repeat="event in Events">
-						<button ng-click="seleccionarEvento()" class="list-group-item">{{event.eventTitle}}</button>
-					</div>
-				</div>
-				
-                <div class="list-group">
-					<button ng-click="seleccionarEvento()" class="list-group-item">Evento</button>
-					<a href="#" class="list-group-item list-group-item-success">Evento Lunes 4</a>
-				</div>
-		</div>
