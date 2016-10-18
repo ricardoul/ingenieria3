@@ -16,9 +16,10 @@
         </div>
         <table class="table table-fixed">
             <tbody ng-repeat="evento in events | filter:eventFilter ">
-            {{evento}}
+            
                <tr>
                   <td class="col-xs-10" id="algo">
+                    <td>{{evento.eventTitle}}</td>
                      <time datetime="2016-10-04">
                      <span class="day"> Start Date: {{ evento.startDate | date }}</span>
                      <span class="day"> End Date: {{ evento.endDate | date }}</span>
@@ -26,13 +27,7 @@
                      <img alt="Asado" src="D:/UCU/10mo semestre/Ingenieria de Software 3/imagenes web/asado.jpg" />
                      <div class="info">
                         <h2 class="title">Asado</h2>
-                        <p class="desc">Asado para 20 personas.
-                           </br>
-                           Pulpon, tira, chorizos, molleja.
-                        </p>
-                        <ul>
-                           <li style="width:33%;">7 inscriptos </li>
-                           <li style="width:34%;">#asado </li>
+                        <p>
                         </ul>
                      </div>
                      <div class="social">
