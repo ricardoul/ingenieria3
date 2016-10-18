@@ -72,15 +72,15 @@ angular.module('EventCMS')
                 notificationService.error("El nombre no puede ser vacio");
                 return false
             }
-            if (!$scope.newUser.lastname || $scope.newUser.lastname.length === 0){
+            if (!$scope.newUser.lastName || $scope.newUser.lastName.length === 0){
                 notificationService.error("El apellido no puede ser vacio");
                 return false
             }
-            if (!$scope.newUser.birthdate || $scope.newUser.birthdate.length === 0){
+            if (!$scope.newUser.birthDate || $scope.newUser.birthDate.length === 0){
                 notificationService.error("La fecha de nacimiento no puede ser vacia");
                 return false
             }
-            if (!$scope.username ||$scope.username === 0){
+            if (!$scope.name ||$scope.name === 0){
                 notificationService.error("El correo no puede ser vacio");
                 return false
             }
