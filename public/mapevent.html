@@ -1,0 +1,68 @@
+    <div class="jumbotron text-center" id="map" style="height:320px">
+    <script>
+    function myMap() {
+    var myCenter = new google.maps.LatLng(-34.88879,-56.1589);
+    var oterCenter = new google.maps.LatLng(-34.88879,-56.157);
+    var mapCanvas = document.getElementById("map");
+    var mapOptions = {center: myCenter, zoom: 15};
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+    var marker1 = new google.maps.Marker({position:myCenter});
+    var marker2 = new google.maps.Marker({position:oterCenter});
+
+	google.maps.event.addDomListener(marker1,'click',function() { body.seleccionarEto(); });
+	google.maps.event.addDomListener(marker2,'click',function() { window.alert('Map was clicked!') });
+    marker1.setMap(map);
+    marker2.setMap(map);
+    }
+	</script>
+	
+    <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+    </div>
+	
+	
+    <!--Inicializar los eventos, cargarlos desde firebase-->
+	<div ng-app="" ng-init="Events=[	{eventTitle:'Orgasmo culinario',startDate:'17',endDate:'24',category:'Carne',description:'Delicate de cordero a la plancha con salsa barbakiue',createdAt:'12'},{eventTitle:'Fiesta de salchichas',startDate:'17',endDate:'24',category:'Chorizo',description:'Una tarde de panchos con los amigos',createdAt:'12'}, {eventTitle:'Juntada en lo del Riki',startDate:'17',endDate:'24',category:'Pescado',description:'Sushi de salmon acompaniado de jhonny negro',createdAt:'12'}	]">
+	</div>
+	
+	
+            <h3>{{SELECTED_EVENT.eventTitle}}</h3>
+            <p>{{SELECTED_EVENT.category}}</p>
+            <p>{{SELECTED_EVENT.description}}</p>
+      
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6" ng-repeat="event in Events">
+            <!--No deberia repetirse para todos los eventos sino para el evento que esta seleccionado-->
+            <h3>{{SELECTED_EVENT.eventTitle}}</h3>
+            <p>{{SELECTED_EVENT.category}}</p>
+            <p>{{SELECTED_EVENT.description}}</p>
+            <!--Falta la direccion del evento-->
+            <p>Comensales<p>
+            <button ng-click="asistirEvento()">Reservar</button>
+            <!--Barra de progreso de que tan lleno esta un evento-->
+
+    <div id="myProgress">
+    <div id="myBar">
+    <div id="label">
+    </div>
+    </div>
+    </div>
+
+    <br>
+
+
+    </div>
+        <div class="col-sm-6">
+                <h3>Mis proximos eventos</h3>
+				
+				<div class="list-group">
+					<div class="col-sm-6" ng-repeat="event in Events">
+						<button ng-click="seleccionarEvento()" class="list-group-item">{{event.eventTitle}}</button>
+					</div>
+				</div>
+				
+                <div class="list-group">
+					<button ng-click="seleccionarEvento()" class="list-group-item">Evento</button>
+					<a href="#" class="list-group-item list-group-item-success">Evento Lunes 4</a>
+				</div>
+		</div>
