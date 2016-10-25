@@ -6,13 +6,20 @@
     var mapCanvas = document.getElementById("map");
     var mapOptions = {center: myCenter, zoom: 15};
     var map = new google.maps.Map(mapCanvas, mapOptions);
-    var marker1 = new google.maps.Marker({position:myCenter});
+
+	var pinColor = "0F9000";
+	var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+    new google.maps.Size(32, 51),
+    new google.maps.Point(0,0),
+    new google.maps.Point(10, 34));
+	var marker1 = new google.maps.Marker({position:myCenter, map: map, icon: pinImage, animation:google.maps.Animation.BOUNCE});
     var marker2 = new google.maps.Marker({position:oterCenter});
 
-	google.maps.event.addDomListener(marker1,'click',function() { body.seleccionarEto(); });
-	google.maps.event.addDomListener(marker2,'click',function() { window.alert('Map was clicked!') });
+	google.maps.event.addDomListener(marker2,'click',function() { body.seleccionarEto(); });
+	google.maps.event.addDomListener(marker1,'click',function() { window.alert('Map was clicked!') });
     marker1.setMap(map);
     marker2.setMap(map);
+	
     }
 	</script>
 	
