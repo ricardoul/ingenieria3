@@ -50,6 +50,8 @@ angular.module('EventCMS')
 			google.maps.event.addDomListener(marker1,'click',function() { window.alert('Map was clicked!') });
 			marker1.setMap(map);
 			marker2.setMap(map);
+			
+			src="https://maps.googleapis.com/maps/api/js?callback=myMap"
 		}
 		
 		$scope.mostrarEventos = function(){
