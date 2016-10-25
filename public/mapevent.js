@@ -12,7 +12,7 @@ angular.module('EventCMS')
 		
 		//define empty event/ database schema
         var EMPTY_EVENT = {
-            eventTitle: "Sin titulo",
+            //eventTitle: "Sin titulo",
             startDate: new Date(),
             endDate: new Date(),
             category: " ",
@@ -22,7 +22,7 @@ angular.module('EventCMS')
 		
 		//El evento seleccionado que se mostrara en pantalla
         var SELECTED_EVENT = {
-            eventTitle: " ",
+            //eventTitle: " ",
             startDate: new Date(),
             endDate: new Date(),
             category: " ",
@@ -38,7 +38,7 @@ angular.module('EventCMS')
         }
 
         $scope.seleccionarEvento = function(Event){
-            SELECTED_EVENT.eventTitle: Event.eventTitle,
+            //SELECTED_EVENT.eventTitle: Event.eventTitle,
             SELECTED_EVENT.startDate: Event.startDate,
             SELECTED_EVENT.endDate: Event.endDate,
             SELECTED_EVENT.category: Event.category,
