@@ -1,6 +1,6 @@
 angular.module('EventCMS')
 
-.controller("ListComensalCtrl", [
+.controller("mapEventCtrl", [
     "$scope", "$state", "$log", "$timeout", "$firebaseArray", "alertsManager", "$rootScope", "$stateParams",
     function($scope, $state, $log, $timeout, $firebaseArray, alertsManager, $rootScope, $stateParams)  {
 
@@ -32,7 +32,7 @@ angular.module('EventCMS')
             updatedAt: " "
         };
 		
-		function myMap() {
+		$scope.myMap = function myMap() {
 			var myCenter = new google.maps.LatLng(-34.88879,-56.1589);
 			var oterCenter = new google.maps.LatLng(-34.88879,-56.157);
 			var mapCanvas = document.getElementById("map");
@@ -51,8 +51,8 @@ angular.module('EventCMS')
 			marker1.setMap(map);
 			marker2.setMap(map);
 			
-			src="https://maps.googleapis.com/maps/api/js?callback=myMap"
 		}
+		scope.MyMap
 		
 		$scope.mostrarEventos = function(){
 			//Desplegar los eventos a los que vaya a asistir en la lista de eventos
