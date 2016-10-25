@@ -52,7 +52,7 @@ angular.module('EventCMS')
 			marker2.setMap(map);
 			
 		}
-		scope.MyMap
+		scope.myMap()
 		
 		$scope.mostrarEventos = function(){
 			//Desplegar los eventos a los que vaya a asistir en la lista de eventos
