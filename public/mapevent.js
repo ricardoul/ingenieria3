@@ -1,6 +1,6 @@
 angular.module('EventCMS')
 
-.controller("ListComensalCtrl", [
+.controller("mapEventCtrl", [
     "$scope", "$state", "$log", "$timeout", "$firebaseArray", "alertsManager", "$rootScope", "$stateParams",
     function($scope, $state, $log, $timeout, $firebaseArray, alertsManager, $rootScope, $stateParams)  {
 
@@ -12,7 +12,7 @@ angular.module('EventCMS')
 		
 		//define empty event/ database schema
         var EMPTY_EVENT = {
-            eventTitle: "Sin titulo",
+            //eventTitle: "Sin titulo",
             startDate: new Date(),
             endDate: new Date(),
             category: " ",
@@ -22,7 +22,7 @@ angular.module('EventCMS')
 		
 		//El evento seleccionado que se mostrara en pantalla
         var SELECTED_EVENT = {
-            eventTitle: " ",
+            //eventTitle: " ",
             startDate: new Date(),
             endDate: new Date(),
             category: " ",
@@ -32,13 +32,35 @@ angular.module('EventCMS')
             updatedAt: " "
         };
 		
+		$scope.myMap = function myMap() {
+			var myCenter = new google.maps.LatLng(-34.88879,-56.1589);
+			var oterCenter = new google.maps.LatLng(-34.88879,-56.157);
+			var mapCanvas = document.getElementById("map");
+			var mapOptions = {center: myCenter, zoom: 15};
+			var map = new google.maps.Map(mapCanvas, mapOptions);
+			var pinColor = "00DD11";
+			var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+			new google.maps.Size(32, 51),
+			new google.maps.Point(0,0),
+			new google.maps.Point(10, 34));
+			var marker1 = new google.maps.Marker({position:myCenter, map: map, icon: pinImage, animation:google.maps.Animation.BOUNCE});
+			var marker2 = new google.maps.Marker({position:oterCenter});
+
+			google.maps.event.addDomListener(marker2,'click',function() { body.seleccionarEto(); });
+			google.maps.event.addDomListener(marker1,'click',function() { window.alert('Map was clicked!') });
+			marker1.setMap(map);
+			marker2.setMap(map);
+			
+		}
+		scope.myMap()
+		
 		$scope.mostrarEventos = function(){
 			//Desplegar los eventos a los que vaya a asistir en la lista de eventos
 			//Desplegar todos los eventos en el mapa de eventos
         }
 
         $scope.seleccionarEvento = function(Event){
-            SELECTED_EVENT.eventTitle: Event.eventTitle,
+            //SELECTED_EVENT.eventTitle: Event.eventTitle,
             SELECTED_EVENT.startDate: Event.startDate,
             SELECTED_EVENT.endDate: Event.endDate,
             SELECTED_EVENT.category: Event.category,

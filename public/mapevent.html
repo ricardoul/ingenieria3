@@ -1,22 +1,7 @@
     <div class="jumbotron text-center" id="map" style="height:320px">
-    <script>
-    function myMap() {
-    var myCenter = new google.maps.LatLng(-34.88879,-56.1589);
-    var oterCenter = new google.maps.LatLng(-34.88879,-56.157);
-    var mapCanvas = document.getElementById("map");
-    var mapOptions = {center: myCenter, zoom: 15};
-    var map = new google.maps.Map(mapCanvas, mapOptions);
-    var marker1 = new google.maps.Marker({position:myCenter});
-    var marker2 = new google.maps.Marker({position:oterCenter});
-
-	google.maps.event.addDomListener(marker1,'click',function() { body.seleccionarEto(); });
-	google.maps.event.addDomListener(marker2,'click',function() { window.alert('Map was clicked!') });
-    marker1.setMap(map);
-    marker2.setMap(map);
-    }
-	</script>
 	
-    <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+	
+    <script src ="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
     </div>
 	
 	
