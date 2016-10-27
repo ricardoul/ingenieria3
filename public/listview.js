@@ -14,11 +14,17 @@ angular.module('EventCMS')
 	   function updateEvents(){
 		   	firebase.database().ref('/users/' + userId+'/events').once('value').then(function(snapshot) {
 			  	var arr = _.values(snapshot.val());
+			  	for (var i=0; i<arr.length; i++){
+			  		if (typeof arr[i].attendants === "undefined"){
+			  			arr[i].attendants = [];
+			  		}
+			  	}
 			  	$scope.events = arr
 			  	$scope.$apply()
 			  // ...
 			});
 	   }
+	   //$scope.totalRegister =
 
 	   updateEvents()
 

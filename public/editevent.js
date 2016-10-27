@@ -85,6 +85,7 @@ angular.module('EventCMS')
                 category: $scope.event.category,
                 description: $scope.event.description,
                 featuredFlag: $scope.event.featuredFlag,
+                attendants: [],
                 // createdAt:  don't need to update this property
                 updatedAt: unixCurrent,
             };

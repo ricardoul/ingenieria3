@@ -51,11 +51,11 @@ angular.module('EventCMS')
 
         $scope.asistirEvento = function(event){
 
-            if(event.attendants.length == event.maxAttendants || !event.maxAttendants ){
-                notificationService.error("Hubo un problema debido a la cantida de asistentes o se a llegado al maximo")
-            }
             if(!event.attendants || typeof(event.attendants) =="string" ){
                 event.attendants = []
+            }
+            if(event.attendants.length == event.maxAttendants || !event.maxAttendants ){
+                notificationService.error("Hubo un problema debido a la cantida de asistentes o se a llegado al maximo")
             }
 
             // Write the new post's data simultaneously in the posts list and the user's post list.

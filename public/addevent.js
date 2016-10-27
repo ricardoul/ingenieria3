@@ -79,7 +79,8 @@ angular.module('EventCMS')
             description: " ",
             featuredFlag: " ",
             createdAt:  " ",
-            updatedAt: " "
+            updatedAt: " ",
+            attendants: [],
         };
 
         function setup_empty_event_state() {
@@ -115,6 +116,7 @@ angular.module('EventCMS')
                 featuredFlag: $scope.newEvent.featuredFlag,
                 createdAt:  unixCurrent,
                 updatedAt: " ",
+                attendants: "laca",
                 status: "open"
             };
             notificationService.success("Evento creado")
