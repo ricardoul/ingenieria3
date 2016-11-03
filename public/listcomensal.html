@@ -1,5 +1,8 @@
     <div class="jumbotron text-center" id="map" style="height:320px">	
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
       <input ng-model="eventFilter.attendants" type="text">
       <button ng-click="eventFilter.attendants = undefined">Limpair filtro</button>
         <div class="col-sm-6" ng-repeat="evento in events | filter:eventFilter">
@@ -10,7 +13,16 @@
             <span>Asistentes minimos:{{evento.minAttendants}}</span>
             <br>
             <span>Asistentes inscriptos actuales {{evento.attendants.length}}</span>
-            <br>
+            <br><div class="container">
+			  <div class="progress">
+				<div class="progress-bar progress-bar-success" role="progressbar" style="width:evento.minAttendants%">
+				  Free Space
+				</div>
+				<div class="progress-bar progress-bar-warning" role="progressbar" style="width:evento.maxAttendants">
+				  Warning
+				</div>
+			  </div>
+			</div>
             <span>{{evento.status}}</span>
             <br>
              <span class="day"> Start Date: {{ evento.startDate | date }}</span>
