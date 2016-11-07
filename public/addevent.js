@@ -1,20 +1,24 @@
 angular.module('EventCMS')
 
 .controller("AddCtrl", [
-    "$rootScope", "$scope", "$timeout", "$state", "$log","$firebaseArray", "alertsManager", "notificationService",
-    function($rootScope, $scope, $timeout, $state, $log, $firebaseArray, alertsManager, notificationService) {
+    "$rootScope", "$scope", "$location", "$timeout", "$state", "$log","$firebaseArray", "alertsManager", "notificationService",
+    function($rootScope, $scope, $location, $timeout, $state, $log, $firebaseArray, alertsManager, notificationService) {
+
+        var init=function(){
+            if(!$rootScope.userId){
+                console.log("Usuario no logueado");
+                notificationService.error("Debe loguearse para ingresar eventos");
+                $location.path("/");
+            } else {
+                if($rootScope.userType != "Cocinero"){
+                    notificationService.error("Comensal no puede agregar eventos");
+                    $location.path("/");
+                }
+            }
+        }
+        init();
 
         $log.info("AddCtrl ran");
-
-
-
-
-
-
-
-
-
-
 
 
         $scope.addAssistant = function(cant){
@@ -48,9 +52,9 @@ angular.module('EventCMS')
 
         $scope.selectedCategorie = 'Carnes'
 
-        $scope.cantidades=['maxima', 'minima']
+        $scope.cantidades=['mínima','máxima']
 
-        $scope.lugaresCantidades = {maxima: 50, minima : 1}
+        $scope.lugaresCantidades = {mínima : 1, máxima: 50}
 
         //Firebase callback to register sync fail/success
         var onComplete = function(error) {
@@ -70,21 +74,23 @@ angular.module('EventCMS')
 
         //define empty event/ database schema
         var EMPTY_EVENT = {
-            eventTitle: " ",
-            startDate: new Date(),
-            endDate: new Date(),
-            category: " ",
+            eventTitle:    " ",
+            eventLocation: " ",
+            startDate:     new Date(),
+            endDate:       new Date(),
+            category:      " ",
             maxAttendants: " ",
             minAttendants: " ",
-            description: " ",
-            featuredFlag: " ",
-            createdAt:  " ",
-            updatedAt: " ",
-            attendants: [],
+            description:   " ",
+            featuredFlag:  " ",
+            createdAt:     " ",
+            updatedAt:     " ",
+            attendants:    [],
+            eventPrice:    0,
         };
 
         function setup_empty_event_state() {
-            $scope.newEvent = angular.copy(EMPTY_EVENT);
+            $scope.event = angular.copy(EMPTY_EVENT);
         };
 
         var unixStart = " ";
@@ -103,33 +109,41 @@ angular.module('EventCMS')
 
         //addEvent function will add a newEvent based on database schema
         $scope.addEvent = function() {
-            transform_dates_to_unix($scope.newEvent.startDate,$scope.newEvent.endDate);
+            if(checkEmptyFields() === false){return}
+            var today =  new Date();
+            if ($scope.newEvent.startDate < today || $scope.newEvent.endDate < today){
+                notificationService.error("Las fechas deben ser mayores al día de hoy");
+            } else {
+                transform_dates_to_unix($scope.newEvent.startDate,$scope.newEvent.endDate);
 
-            $scope.newEvent = {
-                eventTitle: $scope.newEvent.eventTitle,
-                startDate: unixStart,
-                endDate: unixEnd,
-                maxAttendants: $scope.newEvent.maxAttendants,
-                minAttendants: $scope.newEvent.minAttendants,
-                category: $scope.newEvent.category,
-                description: $scope.newEvent.description,
-                featuredFlag: $scope.newEvent.featuredFlag,
-                createdAt:  unixCurrent,
-                updatedAt: " ",
-                attendants: "laca",
-                status: "open"
-            };
-            notificationService.success("Evento creado")
-            // Get a key for a new Post.
-            var newPostKey = firebase.database().ref().child('events').push().key;
+                $scope.event = {
+                    eventTitle:    $scope.newEvent.eventTitle,
+                    eventLocation: $scope.newEvent.eventLocation,
+                    startDate:     unixStart,
+                    endDate:       unixEnd,
+                    maxAttendants: $scope.lugaresCantidades.máxima,
+                    minAttendants: $scope.lugaresCantidades.mínima,
+                    category:      $scope.newEvent.category,
+                    description:   $scope.newEvent.description,
+                    //featuredFlag:  $scope.newEvent.featuredFlag,
+                    createdAt:     unixCurrent,
+                    updatedAt:     " ",
+                    //attendants:  "laca",
+                    status:        "open",
+                    eventPrice:    $scope.newEvent.eventPrice
+                };
+                notificationService.success("Evento creado")
+                // Get a key for a new Post.
+                var newPostKey = firebase.database().ref().child('events').push().key;
 
-              // Write the new post's data simultaneously in the posts list and the user's post list.
-            var updates = {};
-            updates['/events/' + newPostKey] = $scope.newEvent;
-            updates['/users/laca/events/'+ newPostKey] = $scope.newEvent;
-            return firebase.database().ref().update(updates);
+                  // Write the new post's data simultaneously in the posts list and the user's post list.
+                var updates = {};
+                updates['/events/' + newPostKey] = $scope.event;
+                updates['/users/' + $rootScope.userId + '/events/'+ newPostKey] = $scope.event;
+                return firebase.database().ref().update(updates);
 
-            
+                // Redirigir a la página de lista de eventos del cocinero!!
+            }
         };
 
         //call setup empty state to reset the entry form
@@ -166,6 +180,34 @@ angular.module('EventCMS')
             $scope.buttonValue = "Add Event";
 
             $log.info("button enabled");
+        }
+
+        checkEmptyFields = function(){
+            if(!$scope.newEvent.eventtitle){
+                notificationService.error('Debe ingresar un título para el evento');
+                return false;
+            }
+            if(!$scope.newEvent.eventLocation){
+                notificationService.error('Debe ingresar la ubicación del evento');
+                return false;
+            }
+            if(!$scope.newEvent.category){
+                notificationService.error('Debe seleccionar una categoría');
+                return false;
+            }
+            if(!$scope.newEvent.description){
+                notificationService.error('Debe ingresar la commida del evento');
+                return false;
+            }
+            if(!$scope.newEvent.startDate || !$scope.newEvent.startHour || $scope.newEvent.endDate || $scope.newEvent.endHour){
+                notificationService.error('Debe ingresar la fecha y hora del evento');
+                return false;
+            }
+            if(!$scope.newEvent.eventPrice){
+                notificationService.error('Debe ingresar el precio del ticket');
+                return false;
+            }
+            return true;
         }
 
     }]);
