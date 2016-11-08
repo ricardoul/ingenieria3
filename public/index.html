@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js" lang="en" ng-app="EventCMS" >
 
 <head>
 
@@ -29,7 +29,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.4/ui-bootstrap-tpls.min.js"></script>
   <script src="https://unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script type="text/javascript" src="js/angular-pnotify.js"></script>
-<script type="text/javascript" src="https://pnotify.jlareau.com/demo/src/angular-pnotify.js"></script>
+<!--script type="text/javascript" src="https://pnotify.jlareau.com/demo/src/angular-pnotify.js"></script-->
 
     <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
     <script>
@@ -47,14 +47,14 @@
 
     
 
-    <script src="app.js"></script>
-    <script src="listview.js"></script>
-    <script src="addevent.js"></script>
-    <script src="editevent.js"></script>
-    <script src="mapEvent.js"></script>
-    <script src="listcomensal.js"></script>
-    <script src="login.js"></script>
-    <script src="routes.js"></script>
+    <script src="/app.js"></script>
+    <script src="/listview.js"></script>
+    <script src="/addevent.js"></script>
+    <script src="/editevent.js"></script>
+    <!--script src="mapEvent.js"></script-->
+    <script src="/listcomensal.js"></script>
+    <script src="/login.js"></script>
+    <script src="/routes.js"></script>
     <script type="text/javascript" src="js/angular-pnotify.js"></script>
 
 
@@ -68,6 +68,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+	<base href="/" />
 
 </head>
 
@@ -92,16 +93,16 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" ui-sref="eventList">Event list</a>
+                        <a  class="item" ui-sref="eventList">Event list</a>
                     </li>
                     <li>
-                        <a class="page-scroll" ui-sref="addEvent">Add events</a>
+                        <a  class="item" ui-sref="addEvent">Add events</a>
                     </li>
                     <li>
-                        <a class="page-scroll" ui-sref="mapEvent">Map</a>
+                        <a class="item" ui-sref="mapEvent">Map</a>
                     </li>
                     <li>
-                        <a class="page-scroll" ui-sref="about">About</a>
+                        <a class="item" ui-sref="about">About</a>
                     </li>
                 </ul>
             </div>
@@ -116,7 +117,7 @@
             <div class="intro-text">
                 <div class="intro-lead-in">Welcome to Come to eat! webpage</div>
                 <div class="intro-heading">It's Nice To Meet You</div>
-                <a href="#services" class="page-scroll btn btn-xl">Tell Me More</a>
+                <a ui-sref="addEvent" class="page-scroll btn btn-xl">Tell Me More</a>
             </div>
         </div>
     </header>
@@ -125,6 +126,7 @@
 
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
+	<script src="js/foundation.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -139,6 +141,7 @@
     <!-- Theme JavaScript -->
     <script src="js/agency.min.js"></script>
 
+	<main ui-view></main>
 </body>
 
 </html>
