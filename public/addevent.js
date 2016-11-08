@@ -81,6 +81,7 @@ angular.module('EventCMS')
             createdAt:  " ",
             updatedAt: " ",
             attendants: [],
+			latLng: [],
         };
 
         function setup_empty_event_state() {
@@ -117,7 +118,8 @@ angular.module('EventCMS')
                 createdAt:  unixCurrent,
                 updatedAt: " ",
                 attendants: "laca",
-                status: "open"
+                status: "open",
+				latLng: $scope.newEvent.latLng
             };
             notificationService.success("Evento creado")
             // Get a key for a new Post.
