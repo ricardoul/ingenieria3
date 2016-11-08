@@ -94,6 +94,14 @@ angular.module('EventCMS')
             //onComplete is a callback with Firebase success/error message on data write
             ref.child(editEventId).update(updatedEvent,onComplete);
         };
+		
+		//Deletes function delete the event in Firebase
+        $scope.deleteEvent = function() {
+			if(event.attendants.length < event.minAttendants)
+			{
+				ref.child(editEventId).remove();
+			}
+        };
 
         //setup alerts in controller scope
         $scope.alerts = alertsManager.alerts;
