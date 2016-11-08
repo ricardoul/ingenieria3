@@ -97,9 +97,16 @@ angular.module('EventCMS')
 		
 		//Deletes function delete the event in Firebase
         $scope.deleteEvent = function() {
-			if(event.attendants.length < event.minAttendants)
-			{
 				ref.child(editEventId).remove();
+        };
+		
+		//Enables or disables the Delete botton
+        $scope.enableDelete = function() {
+			if(evento.attendants.length < event.minAttendants)
+			{
+				document.getElementById("delete").disabled = true;
+			}else{
+				document.getElementById("delete").disabled = false;
 			}
         };
 
