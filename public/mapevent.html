@@ -9,28 +9,22 @@
 </head>
 
 <body>
-  <ng-map zoom="15" center="current-position">
-    <shape id="circle" name="circle" centered="true"
-      stroke-color='#FF0000' stroke-opacity="0.8"stroke-weight="2"
-      center="current-position" radius="4000" editable="true" ></shape>
+  <ng-map ng-if="events.length >0" zoom="15" center="current-position">
+     <marker ng-repeat="event in events" position="{{event.eventLocation.lat}},{{event.eventLocation.long}}" title="Hello World!"></marker>
   </ng-map>
 	
-    <!--Inicializar los eventos, cargarlos desde firebase-->
-	<div ng-app="ngMap" ng-init="Events=[	{eventTitle:'Orgasmo culinario',startDate:'17',endDate:'24',category:'Carne',description:'Delicate de cordero a la plancha con salsa barbakiue',createdAt:'12'},{eventTitle:'Fiesta de salchichas',startDate:'17',endDate:'24',category:'Chorizo',description:'Una tarde de panchos con los amigos',createdAt:'12'}, {eventTitle:'Juntada en lo del Riki',startDate:'17',endDate:'24',category:'Pescado',description:'Sushi de salmon acompaniado de jhonny negro',createdAt:'12'}	]">
-	
-	</div>
-	
-            <h3>{{SELECTED_EVENT.eventTitle}}</h3>
-            <p>{{SELECTED_EVENT.category}}</p>
-            <p>{{SELECTED_EVENT.description}}</p>
+    <!--Inicializar los eventos, cargarlos desde firebase-->	
+            <h3>{{selectedEvent.eventTitle}}</h3>
+            <p>{{selectedEvent.category}}</p>
+            <p>{{selectedEvent.description}}</p>
       
     <div class="container">
       <div class="row">
         <div class="col-sm-6" ng-repeat="event in Events">
             <!--No deberia repetirse para todos los eventos sino para el evento que esta seleccionado-->
-            <h3>{{SELECTED_EVENT.eventTitle}}</h3>
-            <p>{{SELECTED_EVENT.category}}</p>
-            <p>{{SELECTED_EVENT.description}}</p>
+            <h3>{{selectedEvent.eventTitle}}</h3>
+            <p>{{selectedEvent.category}}</p>
+            <p>{{selectedEvent.description}}</p>
             <!--Falta la direccion del evento-->
             <p>Comensales<p>
             <button ng-click="asistirEvento()">Reservar</button>
