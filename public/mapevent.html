@@ -1,12 +1,24 @@
 <!DOCTYPE html>
+<html ng-app="ngMap">
+<head>
+<title>Simle Map</title>
+<meta name="description" content="Simple Map">
+<meta name="keywords" content="ng-map,AngularJS,center">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<script src="script-tags-for-development.js"></script>
+</head>
+
+<body>
+  <ng-map zoom="15" center="current-position">
+    <shape id="circle" name="circle" centered="true"
+      stroke-color='#FF0000' stroke-opacity="0.8"stroke-weight="2"
+      center="current-position" radius="4000" editable="true" ></shape>
+  </ng-map>
 	
     <!--Inicializar los eventos, cargarlos desde firebase-->
 	<div ng-app="ngMap" ng-init="Events=[	{eventTitle:'Orgasmo culinario',startDate:'17',endDate:'24',category:'Carne',description:'Delicate de cordero a la plancha con salsa barbakiue',createdAt:'12'},{eventTitle:'Fiesta de salchichas',startDate:'17',endDate:'24',category:'Chorizo',description:'Una tarde de panchos con los amigos',createdAt:'12'}, {eventTitle:'Juntada en lo del Riki',startDate:'17',endDate:'24',category:'Pescado',description:'Sushi de salmon acompaniado de jhonny negro',createdAt:'12'}	]">
 	
 	</div>
-	
-	<ng-map center="[40.74, -74.18]"></ng-map>
-	
 	
             <h3>{{SELECTED_EVENT.eventTitle}}</h3>
             <p>{{SELECTED_EVENT.category}}</p>
@@ -49,3 +61,7 @@
 					<a href="#" class="list-group-item list-group-item-success">Evento Lunes 4</a>
 				</div>
 		</div>
+		
+
+</body>
+</html>

@@ -6,17 +6,8 @@ angular.module('EventCMS')
 
         $log.info("AddCtrl ran");
 
-
-
-
-
-
-
-
-
-
-
-
+		
+		
         $scope.addAssistant = function(cant){
             $scope.lugaresCantidades[cant] +=1
         }
