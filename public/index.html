@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en" ng-app="EventCMS" >
+<script type="text/javascript">var cargadoMapa =function(){
+    console.log("se cargo el mapa correctamente")
+    }</script>
 
 <head>
 
@@ -13,7 +16,10 @@
     <title>Come to Eat!</title>
 
     <!-- Bootstrap Core CSS -->
+
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw7W0LVdNslqKFFCnoDsWIzd_LANHTKM4&callback=cargadoMapa"
+    type="text/javascript"></script>
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -140,6 +146,8 @@
 
     <!-- Theme JavaScript -->
     <script src="js/agency.min.js"></script>
+    <script src="/ng-map.min.js"></script>
+    
 
 	<main ui-view></main>
 </body>
