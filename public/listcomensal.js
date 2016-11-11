@@ -1,8 +1,8 @@
 angular.module('EventCMS')
 
 .controller("ListComensalCtrl", [
-    "$scope", "$state", "$log", "$timeout", "$firebaseArray", "alertsManager", "$rootScope", "$stateParams","notificationService",
-    function($scope, $state, $log, $timeout, $firebaseArray, alertsManager, $rootScope, $stateParams, notificationService)  {
+    "$rootScope", "$scope", "$state", "$log", "$timeout", "$firebaseArray", "alertsManager", "$rootScope", "$stateParams","notificationService",
+    function($rootScope, $scope, $state, $log, $timeout, $firebaseArray, alertsManager, $rootScope, $stateParams, notificationService)  {
 
         $log.info("ListComensal ran");
 
@@ -17,8 +17,14 @@ angular.module('EventCMS')
 
          $scope.fireBaseRef.once('value').then(function(snapshot) {
                 var arr = _.values(snapshot.val());
-                $scope.events = arr
-                $scope.$apply()
+                for (var i=0; i<arr.length; i++){
+                    if (!arr[i].attendants || typeof(arr[i].attendants) === "undefined"){
+                        arr[i].attendants = [];
+                    }
+                }
+
+                $scope.events = arr;
+                $scope.$apply();
               // ...
             });
        }
@@ -51,23 +57,48 @@ angular.module('EventCMS')
 
         $scope.asistirEvento = function(event){
 
-            if(!event.attendants || typeof(event.attendants) =="string" ){
-                event.attendants = []
+            /*if(!$rootScope.userId){
+                notificationService.error("Debe loguearse para ver los eventos");
             }
-            if(event.attendants.length == event.maxAttendants || !event.maxAttendants ){
-                notificationService.error("Hubo un problema debido a la cantida de asistentes o se a llegado al maximo")
-            }
+            else{
+                if ($rootScope.userType != "Comensal"){
+                    notificationService.error("Debe tener una cuenta de comensal para poder visualizar los eventos");
+                } else {*/
 
-            // Write the new post's data simultaneously in the posts list and the user's post list.
-            event.attendants.push($scope.userId)
-            if(event.attendants.length == event.maxAttendants){
-                event.status="full"
-            }
-            $scope.fireBaseRef.remove()
-            $scope.fireBaseRef.update(angular.copy($scope.events));
+                    if(!event.attendants || typeof(event.attendants) =="string" ){
+                        event.attendants = []
+                    }
+                    if(event.attendants.length == event.maxAttendants || !event.maxAttendants ){
+                        notificationService.error("Hubo un problema debido a la cantida de asistentes o se a llegado al maximo")
+                    }
+
+                    // Write the new post's data simultaneously in the posts list and the user's post list.
+                    event.attendants.push($rootScope.userId)
+                    if(event.attendants.length == event.maxAttendants){
+                        event.status="full"
+                    }
+                    $scope.fireBaseRef.remove()
+                    $scope.fireBaseRef.update(angular.copy($scope.events));
+                //}
+            //}
     }
 
+    $scope.rate = 7;
+    $scope.max = 10;
+    $scope.isReadonly = false;
 
+      $scope.hoveringOver = function(value) {
+        $scope.overStar = value;
+        $scope.percent = 100 * (value / $scope.max);
+      };
+
+      $scope.ratingStates = [
+        {stateOn: 'glyphicon-ok-sign', stateOff: 'glyphicon-ok-circle'},
+        {stateOn: 'glyphicon-star', stateOff: 'glyphicon-star-empty'},
+        {stateOn: 'glyphicon-heart', stateOff: 'glyphicon-ban-circle'},
+        {stateOn: 'glyphicon-heart'},
+        {stateOff: 'glyphicon-off'}
+      ];
       
 
     }]);
