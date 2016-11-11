@@ -10,7 +10,7 @@
 
 <body>
   <ng-map ng-if="events.length >0" zoom="15" center="current-position">
-     <marker ng-repeat="event in events" position="{{event.eventLocation.lat}},{{event.eventLocation.long}}" title="Hello World!"></marker>
+     <marker ng-repeat="event in events" position="{{event.eventLocation.lat}},{{event.eventLocation.long}}" title="{{event.eventTitle}}"></marker>
   </ng-map>
 	
     <!--Inicializar los eventos, cargarlos desde firebase-->	
