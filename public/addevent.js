@@ -6,8 +6,8 @@ angular.module('EventCMS')
 
         $log.info("AddCtrl ran");
 
-		
-		
+        
+        
         $scope.addAssistant = function(cant){
             $scope.lugaresCantidades[cant] +=1
         }
@@ -72,7 +72,7 @@ angular.module('EventCMS')
             createdAt:  " ",
             updatedAt: " ",
             attendants: [],
-			latLng: [],
+            latLng: [],
         };
 
         function setup_empty_event_state() {
@@ -110,7 +110,7 @@ angular.module('EventCMS')
                 updatedAt: " ",
                 attendants: "laca",
                 status: "open",
-				latLng: $scope.newEvent.latLng
+                latLng: $scope.newEvent.latLng
             };
             notificationService.success("Evento creado")
             // Get a key for a new Post.
