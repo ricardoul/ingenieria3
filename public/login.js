@@ -8,7 +8,19 @@ angular.module('EventCMS')
 
         $scope.login = function(){
             firebase.auth().signInWithEmailAndPassword($scope.username, $scope.password1).then(function() {
-                notificationService.success("Login "+ $scope.username +" correctamente")
+                notificationService.success("Login "+ $scope.username +" correctamente");
+                
+                var userId = firebase.auth().currentUser.uid;
+
+                $rootScope.userId   = userId;
+
+                firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+                
+                    var userData = snapshot.val();
+                    $rootScope.userType = userData.info.type;
+
+                });
+
             }, function(error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
@@ -41,17 +53,21 @@ angular.module('EventCMS')
                 notificationService.success("Cuenta "+ $scope.username +" creada correctamente")
 
                 var userId = firebase.auth().currentUser.uid;
-   
                 var updates = {};
+
+                $rootScope.userId   = userId;
+
                 updates['/users/'+userId+'/info/'] = $scope.newUser;
 
                 notificationService.success("Usuario creado");
                 return firebase.database().ref().update(updates);
 
+                // Redireccionar a página lista de eventos!!!
+
             }, function(error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
-                notificationService.error(errorMessage)
+                notificationService.error(errorMessage);
             });
 
         }

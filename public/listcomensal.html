@@ -1,38 +1,78 @@
-    <div class="jumbotron text-center" id="map" style="height:320px">	
+<div class="jumbotron text-center" id="map" style="height:320px"> 
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
-      <input ng-model="eventFilter.attendants" type="text">
-      <button ng-click="eventFilter.attendants = undefined">Limpair filtro</button>
-        <div class="col-sm-6" ng-repeat="evento in events | filter:eventFilter">
-            <h3>{{evento.eventTitle}}</h3>
-            <br>
-            <span>Asistentes maximos: {{evento.maxAttendants}}</span>
-            <br>
-            <span>Asistentes minimos:{{evento.minAttendants}}</span>
-            <br>
-            <span>Asistentes inscriptos actuales {{evento.attendants.length}}</span>
-            <br><div class="container">
-			  <div class="progress">
-				<div class="progress-bar progress-bar-success" role="progressbar" style="width:evento.minAttendants%">
-				  Free Space
-				</div>
-				<div class="progress-bar progress-bar-warning" role="progressbar" style="width:evento.maxAttendants">
-				  Warning
-				</div>
-			  </div>
-			</div>
-            <span>{{evento.status}}</span>
-            <br>
-             <span class="day"> Start Date: {{ evento.startDate | date }}</span>
-             <span class="day"> End Date: {{ evento.endDate | date }}</span>
-             <br>
-            <p>Comensales<p>{{checkAttendants(evento.attendants)}}
-            <br>
-            <button class="btn btn-sm btn-default" ng-click="asistirEvento(evento)" ng-disabled="checkReserveButton(evento)">Reservar</button>
-            <!--Barra de progreso de que tan lleno esta un evento-->
-    </div>
-    </div>
-    </div>
+  <input ng-model="eventFilter.attendants" type="text">
+  <button ng-click="eventFilter.attendants = undefined">Limpair filtro</button>
+
+  <div class="col-sm-6" style="width:70%;margin-left:20%;" ng-repeat="evento in events | filter:eventFilter">
+    <section class="eventContainer">      
+      <span>
+        <header class="eventTitle">
+          <h3 class="ng-binding" style="
+            font-family: sans-serif;
+            font-variant: small-caps;
+            font-weight: bold;
+            color: #366da0;">
+            {{evento.eventTitle}}
+          </h3>
+        </header>
+      </span>
+      <span class="eventInfo">
+        <span id="price" class="eventData" style="width:10%">
+            <i class="fa fa-usd" aria-hidden="true" style="float: left; margin-right: 7px"></i>
+            <p style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; "> {{evento.eventPrice}} </p> 
+        </span>
+        <span id="cooker" class="eventData" style="width:30%">
+          <!--<i class="fa fa-map-marker" aria-hidden="true" style="float: left;"></i>-->
+          <p style="font-size: 10px; font-weight: bold; float: left; margin-left: 3px;">Cocinero: </p>
+          <p style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; "> {{evento.cooker}} </p>
+        </span>
+        <!--<span id="rating" class="eventData" style="width:35%">
+          <label for="input-2" class="control-label">Rate This</label>
+          <input id="input-2" name="input-2" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1">
+          </span>
+          <!--<p style="font-size: 10px; font-weight: bold; float: left; margin-left: 3px;">Valoración: </p>
+          <p style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; "> las estrellitas </p>
+        </span>-->
+      </span>
+      <span class="eventInfo">
+        <span id="location" class="eventData" style="width:35%">
+          <i class="fa fa-map-marker" aria-hidden="true" style="float: left;"></i>
+          <p style="font-size: 10px; font-weight: bold; float: left; margin-left: 3px;">Lugar: </p>
+          <p ng-model="numLimit" style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; "> {{evento.eventLocation.street}} </p>
+        </span>
+        <span id="category" class="eventData" style="width:28%">
+          <i class="fa fa-tag" aria-hidden="true" style="float: left;"></i>
+          <p style="font-size: 10px; font-weight: bold; float: left; margin-left: 3px;">Categoría: </p>
+          <p style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; "> {{evento.category}} </p> 
+        </span>
+        <span id="attendants" class="eventData" style="width:18%">
+          <i class="fa fa-users" aria-hidden="true" style="float: left;"></i>
+          <p style="font-size: 10px; font-weight: bold; float: left; margin-left: 3px;">Asistentes: </p>
+          <p style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; "> {{evento.attendants.length}} </p> 
+        </span>
+      </span>
+      <span class="footerEvent">
+      <span id="date" class="eventData" style="width:25%">
+          <i class="fa fa-calendar-o" aria-hidden="true" style="float: left;"></i>
+          <p style="font-size: 10px; font-weight: bold; float: left; margin-left: 3px;">Inicio: </p>
+          <p style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; "> {{evento.startDate | date : 'MMM d, y hh:mm'}} </p> 
+        </span>
+        <span id="date" class="eventData" style="width:25%">
+          <p style="font-size: 10px; font-weight: bold; float: left; margin-left: 3px;">Fin: </p>
+          <p style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; "> {{evento.endDate | date : 'MMM d, y hh:mm'}} </p> 
+        </span>
+        <span id="status" class="eventData" style="width:18%">
+          <i class="fa fa-toggle-on" aria-hidden="true" style="float: left;"></i>
+          <p style="font-size: 10px; font-weight: bold; float: left; margin-left: 3px;">Estado: </p>
+          <p style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; "> {{evento.status}} </p> 
+        </span>
+
+         <button id="buttonRegister" class="btn btn-sm btn-default" ng-click="asistirEvento(evento)" ng-disabled="checkReserveButton(evento)">
+          Inscribir
+         </button>
+      </span>
+    </section>
+    <!--Barra de progreso de que tan lleno esta un evento-->
+  </div>
+</div>
 
