@@ -10,9 +10,11 @@
 
 <body>
   <ng-map ng-if="events.length >0" zoom="15" center="current-position">
-     <marker ng-repeat="event in events" position="{{event.eventLocation.lat}},{{event.eventLocation.long}}" title="{{event.eventTitle}}"></marker>
-  </ng-map>
-	
+     <marker ng-repeat="event in events" position="{{event.eventLocation.lat}},{{event.eventLocation.long}}" title="{{event.eventTitle}}" data="'hola'" uib-popover-template="'eventInfo.html'"
+       popover-placement="right" popover-trigger="'click'" popover-animation="false"></marker>
+
+</ng-map>
+
     <!--Inicializar los eventos, cargarlos desde firebase-->	
             <h3>{{selectedEvent.eventTitle}}</h3>
             <p>{{selectedEvent.category}}</p>
@@ -38,7 +40,11 @@
     </div>
 
     <br>
-
+<script type="text/ng-template" id="eventInfo.html">
+            <ul class="list-unstyled">
+              {{event}}
+          </ul>
+    </script>
 
     </div>
         <div class="col-sm-6">
