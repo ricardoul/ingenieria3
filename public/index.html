@@ -18,8 +18,10 @@
     <!-- Bootstrap Core CSS -->
 
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!--
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw7W0LVdNslqKFFCnoDsWIzd_LANHTKM4&callback=cargadoMapa"
     type="text/javascript"></script>
+    -->
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -28,17 +30,31 @@
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
+    <!-- Google Font -->
+    <link href='https://fonts.googleapis.com/css?family=Cabin:500' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    
+    <!-- JQUERY -->
+    <script   src="https://code.jquery.com/jquery-3.1.1.min.js" ></script>
+
     <!-- Theme CSS -->
     <link href="css/agency.min.css" rel="stylesheet">
     <link href="css/EventItemStyle.css" rel="stylesheet">
     <link href="css/listevent.css" rel="stylesheet">
+
+    
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.0.0/pnotify.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.4/ui-bootstrap-tpls.min.js"></script>
 	<script src="https://unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
 	<script type="text/javascript" src="js/angular-pnotify.js"></script>
-	<!--script type="text/javascript" src="https://pnotify.jlareau.com/demo/src/angular-pnotify.js"></script-->
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.0.0/pnotify.min.js"></script>
+	<script type="text/javascript" src="https://pnotify.jlareau.com/demo/src/angular-pnotify.js"></script>
+    
     <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+    
+
     <script>
       // Initialize Firebase
       var config = {
@@ -50,9 +66,16 @@
       };
       firebase.initializeApp(config);
     </script>
+
     <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
 
+    <script data-require="angular.js@1.2.x" src="https://code.angularjs.org/1.2.28/angular.js" data-semver="1.2.28"></script>
+
+    <!-- Google Maps JavaScript API -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
     
+    <!-- vsGoogleAutocomplete -->
+    <script type="text/javascript" src="vs-google-autocomplete.js"></script>
 
     <script src="/app.js"></script>
     <script src="/listview.js"></script>
@@ -63,7 +86,6 @@
     <script src="/login.js"></script>
     <script src="/payevent.js"></script>
     <script src="/routes.js"></script>
-    <script type="text/javascript" src="js/angular-pnotify.js"></script>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-mocks.js"></script>
@@ -101,16 +123,13 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a  class="item" ui-sref="eventList">Event list</a>
+                        <a  class="item" ui-sref="listComensal">Event list</a>
                     </li>
                     <li>
                         <a  class="item" ui-sref="addEvent">Add events</a>
                     </li>
                     <li>
                         <a class="item" ui-sref="mapEvent">Map</a>
-                    </li>
-                    <li>
-                        <a class="item" ui-sref="about">About</a>
                     </li>
                     <li>
                         <a class="item" ui-sref="login">Login</a>
@@ -126,9 +145,9 @@
     <header class="content_steps show">
         <div class="container">
             <div class="intro-text">
-                <div class="intro-lead-in">Welcome to Come to eat! webpage</div>
+                <div class="intro-lead-in">Welcome to Come to eat!</div>
                 <div class="intro-heading">It's Nice To Meet You</div>
-                <a ui-sref="addEvent" class="page-scroll btn btn-xl">Tell Me More</a>
+                <!--a ui-sref="addEvent" class="page-scroll btn btn-xl">Tell Me More</a-->
             </div>
         </div>
     </header>

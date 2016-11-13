@@ -26,23 +26,49 @@ top: 400px;
 transform: translateY(-50%);
 float: left;">
 		
-		<!-- Nombre del evento -->
-      <div class="form-group">
+		<div class="form-group">
          <label class="control-label col-sm-4" for="">Título</label>
          <div class="col-sm-6">
             <input type="text" class="form-control"  ng-model="newEvent.eventTitle" placeholder="Ej: Super parrillada!">
          </div>
       </div>
 
-		<!-- Direccion del evento -->
+      <!--
       <div class="form-group">
          <label class="control-label col-sm-4" for="">Ubicación</label>
          <div class="col-sm-6">
             <input type="text" class="form-control"  ng-model="newEvent.eventLocation" placeholder="Ej: 18 de Julio 1456">
          </div>
+      </div>-->
+
+      <div class="form-group">
+          <label class="control-label col-sm-4" for="address">Ubicación</label>
+          <div class="col-sm-6">
+             <input vs-google-autocomplete 
+                    
+                    ng-model="newEvent.eventAddress"
+                    vs-place="address.place" 
+                    vs-place-id="address.components.placeId"
+                    vs-street-number="address.components.streetNumber" 
+                    vs-street="address.components.street"
+                    vs-city="address.components.city"
+                    vs-state="address.components.state"
+                    vs-country-short="address.components.countryCode"
+                    vs-country="address.components.country"
+                    vs-post-code="address.components.postCode"
+                    vs-district="address.components.district"
+                    vs-latitude="address.components.location.lat"
+                    vs-longitude="address.components.location.long"
+                    
+                    type="text" 
+                    name="address"
+                    id="address"
+                    class="form-control" 
+                    placeholder="Ej: 18 de Julio 123">
+          </div>
       </div>
 
-		<!-- Tipo de comida que se sirva del evento -->
+
       <div class="form-group">
          <label class="control-label col-sm-4" for="">Categoría</label>
          <div class="col-sm-6">
@@ -51,7 +77,6 @@ float: left;">
          </div>
       </div>
 
-		<!-- Descripcion del evento -->
       <div class="form-group">
          <label class="control-label col-sm-4" for="">Comida</label>
          <div class="col-sm-6">
@@ -59,14 +84,14 @@ float: left;">
          </div>
       </div>
 
-		<!-- Cantidad de lugares para del evento -->
+
       <div class="form-group" ng-repeat="cant in cantidades">
          <label class="control-label col col-sm-4" for="">Capacidad {{cant}}</label>
          <div class="col-sm-6">
             <div class="input-group number-spinner">
 
                <span class="input-group-btn data-dwn">
-                  <button class="btn btn-warning" ng-click="removeAssistant(cant)" ng-model="newEvent.minAttendants" ng-disabled="checkCantLower(1,cant)"  class="btn btn-default btn-info" data-dir="dwn">
+                  <button  ng-click="removeAssistant(cant)" ng-model="newEvent.minAttendants" ng-disabled="checkCantLower(1,cant)"  class="btn btn-default btn-info" data-dir="dwn">
                      <span class="glyphicon glyphicon-minus"></span>
                   </button>
                </span>
@@ -74,7 +99,7 @@ float: left;">
                <input  ng-change="checkNumber(cant)" type="number" class="form-control text-center" ng-model="lugaresCantidades[cant]" value="1" >
 
                <span class="input-group-btn data-up">
-                  <button class="btn btn-warning" ng-click="addAssistant(cant)" ng-model="newEvent.maxAttendants" ng-disabled="checkCantUpper(300,cant)" class="btn btn-default btn-info" data-dir="up">
+                  <button  ng-click="addAssistant(cant)" ng-model="newEvent.maxAttendants" ng-disabled="checkCantUpper(300,cant)" class="btn btn-default btn-info" data-dir="up">
                      <span class="glyphicon glyphicon-plus"></span>
                   </button>
                </span>
@@ -82,24 +107,19 @@ float: left;">
          </div>
       </div>
 
-		<!-- Dias y horario del evento -->
       <div class="form-group">
-         <label class="control-label col-sm-4" for="">Desde</label>
+         <label class="control-label col-sm-4" for="">Día y horario</label>
          <div class="small-5 columns">
             <input type="date" ng-model="newEvent.startDate"/>
             <input type="time" ng-model="newEvent.startHour"/>
          </div>
-      </div>
-	  
-      <div class="form-group">
-         <label class="control-label col-sm-4" for="">Hasta</label>
          <div class="small-5 columns">
             <input type="date" ng-model="newEvent.endDate" />
             <input type="time" ng-model="newEvent.endHour" />
          </div>
       </div>
 
-		<!-- Tipo de ambiente del evento -->
+      <!--
       <div class="form-group">
          <label class="control-label col-sm-4" for="">¿Lugar cerrado?</label>
          <div class="col-sm-6">
@@ -109,8 +129,8 @@ float: left;">
             </div>
          </div>
       </div>
+      -->
 
-		<!-- Costo por asistir al evento -->
       <div class="form-group">
          <label class="control-label col-sm-4">Precio del ticket</label>
          <div class="col-sm-3">
@@ -118,7 +138,6 @@ float: left;">
          </div>
       </div>
 
-		<!-- Confirmar el evento -->
       <div class="form-group">
          <div class="col-sm-offset-4 col-sm-3">
             <button type="submit" class="btn btn-primary" ng-click="addEvent()">Crear Evento</button>

@@ -1,15 +1,16 @@
 angular.module('EventCMS')
 
 .controller("ListCtrl", [
-    "$scope", "$state", "$log","$firebaseArray", "$stateParams",
-    function($scope, $state, $log, $firebaseArray, $stateParams) {
+    "$scope", "$rootScope", "$state", "$log","$firebaseArray", "$stateParams",
+    function($scope, $rootScope, $state, $log, $firebaseArray, $stateParams) {
         $log.info("ListCtrl ran");
 
         //create Firebase events array
         $scope.events = [{"id":"algo"}]
+
        // var userId = firebase.auth().currentUser.uid;
-       var userId = "laca"
-	   $scope.categories =['Bebidas','Cafetería','Calzones','Carnes','Celíacos','Chivitos','Comida Árabe','Comida Armenia','Comida China','Comida Japonesa','Comida Mexicana','Comida Peruana','Comida Vegetariana','Comida Venezolana','Desayunos','Empanadas','Ensaladas','Hamburguesas','Helados','Lehmeyun','Licuados y Jugos','Menú del día','Milanesas','Parrilla','Pastas','Pescados y Mariscos','Picadas','Pizzas','Postres','Sándwiches','Sushi','Tartas','Viandas y Congelados','Woks','Wraps']
+       var userId = $rootScope.userId;
+
 
 	   function updateEvents(){
 		   	firebase.database().ref('/users/' + userId+'/events').once('value').then(function(snapshot) {
@@ -24,11 +25,13 @@ angular.module('EventCMS')
 			  // ...
 			});
 	   }
-	   //$scope.totalRegister =
 
 	   updateEvents()
+
+
 	   $scope.dateFrom =new Date('10/01/2016 00:00:00');
 	   $scope.dateTo =new Date()
+	   
 
 }]).filter("myfilter", function() {
 		  return function(items, from, to) {

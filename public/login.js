@@ -8,7 +8,7 @@ angular.module('EventCMS')
 
         $scope.login = function(){
             firebase.auth().signInWithEmailAndPassword($scope.username, $scope.password1).then(function() {
-                notificationService.success("Login "+ $scope.username +" correctamente");
+                notificationService.success("Login "+ $scope.username +" realizado correctamente");
                 
                 var userId = firebase.auth().currentUser.uid;
 
@@ -19,12 +19,28 @@ angular.module('EventCMS')
                     var userData = snapshot.val();
                     $rootScope.userType = userData.info.type;
 
+                    if (userData.info.type === 'Cocinero'){
+                        $state.go('eventList');
+                    } else {
+                        if (userData.info.type === 'Comensal'){
+                            $state.go('listComensal');
+                        }
+                    }
+
                 });
 
             }, function(error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 notificationService.error(errorMessage)
+            });
+        }
+
+        $scope.logout = function(){
+            firebase.auth().signOut().then(function() {
+              // Sign-out successful.
+            }, function(error) {
+              notificationService.error(errorMessage)
             });
         }
 
@@ -59,10 +75,18 @@ angular.module('EventCMS')
 
                 updates['/users/'+userId+'/info/'] = $scope.newUser;
 
-                notificationService.success("Usuario creado");
-                return firebase.database().ref().update(updates);
 
                 // Redireccionar a página lista de eventos!!!
+                if ($scope.newUser.type === "Cocinero"){
+                    $state.go('eventList');
+                } else{
+                    if ($scope.newUser.type === 'Comensal'){
+                        $state.go('listComensal')
+                    }
+                }
+
+                //notificationService.success("Usuario creado");
+                return firebase.database().ref().update(updates);
 
             }, function(error) {
                 var errorCode = error.code;

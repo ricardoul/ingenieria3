@@ -5,7 +5,8 @@ var myApp = angular.module('EventCMS', [
     'firebase',
     'ui.bootstrap',
     'jlareau.pnotify',
-    'ngMap'
+    'ngMap',
+    'vsGoogleAutocomplete'
 ]);
 
 
