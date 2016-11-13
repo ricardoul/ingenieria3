@@ -32,7 +32,7 @@ angular.module('EventCMS')
             }, function(error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
-                notificationService.error(errorMessage)
+                notificationService.error("Usuario y/o contraseña incorrecta");
             });
         }
 

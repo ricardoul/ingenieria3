@@ -12,7 +12,7 @@ angular.module('EventCMS')
                 $state.go('login');
             } else {
                 if($rootScope.userType != "Cocinero"){
-                    notificationService.error("Comensal no puede agregar eventos");
+                    notificationService.error("Debe loguearse con una cuenta de cocinero para agregar eventos");
                     //$location.path("/");
                     $state.go('login');
                 }
@@ -172,10 +172,12 @@ angular.module('EventCMS')
                     var updates = {};
                     updates['/events/' + newPostKey] = $scope.event;
                     updates['/users/' + $rootScope.userId + '/events/'+ newPostKey] = $scope.event;
-                    return firebase.database().ref().update(updates);
+                    firebase.database().ref().update(updates);
 
                     // Redirigir a la página de lista de eventos del cocinero!!
                     $state.go('eventList');
+
+                    return
                 });
 
             }

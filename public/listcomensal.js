@@ -10,7 +10,6 @@ angular.module('EventCMS')
         var editEventId = $stateParams.passId;
         $log.info("stateparms", editEventId);
         // var userId = firebase.auth().currentUser.uid;
-        $scope.userId = "laca"
         $scope.fireBaseRef = firebase.database().ref('/events')
         
         function updateEvents(){
@@ -36,7 +35,7 @@ angular.module('EventCMS')
 
         $scope.checkAttendants = function(attendants){
 
-            if(attendants && attendants.indexOf($scope.userId) > -1){
+            if(attendants && attendants.indexOf($rootScope.userId) > -1){
                 return "Estas inscripto"
             }else{
                 return "Inscribete ahora!"
@@ -46,7 +45,7 @@ angular.module('EventCMS')
 
         $scope.checkReserveButton = function(evento){
 
-            if(evento.attendants && (evento.attendants.indexOf($scope.userId) > -1 || evento.attendants.length == evento.maxAttendants )){
+            if(evento.attendants && (evento.attendants.indexOf($rootScope.userId) > -1 || evento.attendants.length == evento.maxAttendants )){
                 return true
             }else{
                 return false
@@ -57,13 +56,13 @@ angular.module('EventCMS')
 
         $scope.asistirEvento = function(event){
 
-            /*if(!$rootScope.userId){
+            if(!$rootScope.userId){
                 notificationService.error("Debe loguearse para ver los eventos");
             }
             else{
                 if ($rootScope.userType != "Comensal"){
                     notificationService.error("Debe tener una cuenta de comensal para poder visualizar los eventos");
-                } else {*/
+                } else {
 
                     if(!event.attendants || typeof(event.attendants) =="string" ){
                         event.attendants = []
@@ -79,8 +78,10 @@ angular.module('EventCMS')
                     }
                     $scope.fireBaseRef.remove()
                     $scope.fireBaseRef.update(angular.copy($scope.events));
-                //}
-            //}
+
+                    notificationService.success("Inscripción al evento exitosa!");
+                }
+            }
     }
 
     $scope.rate = 7;

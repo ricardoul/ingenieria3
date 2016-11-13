@@ -11,7 +11,7 @@ angular.module('EventCMS')
     // $urlRouterProvider.otherwise('/');
     $stateProvider
     .state('eventList', {
-        url: 'listview/',
+        url: '/listview',
         templateUrl: 'listview.html',
         controller: 'ListCtrl',
     })
