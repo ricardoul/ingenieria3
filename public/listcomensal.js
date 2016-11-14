@@ -57,11 +57,11 @@ angular.module('EventCMS')
         $scope.asistirEvento = function(event){
 
             if(!$rootScope.userId){
-                notificationService.error("Debe loguearse para ver los eventos");
+                notificationService.error("Debe loguearse para inscribirse a los eventos");
             }
             else{
                 if ($rootScope.userType != "Comensal"){
-                    notificationService.error("Debe tener una cuenta de comensal para poder visualizar los eventos");
+                    notificationService.error("Debe tener una cuenta de comensal para poder inscribirse a los eventos");
                 } else {
 
                     if(!event.attendants || typeof(event.attendants) =="string" ){
