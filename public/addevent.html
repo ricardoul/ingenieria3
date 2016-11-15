@@ -91,7 +91,7 @@ float: left;">
             <div class="input-group number-spinner">
 
                <span class="input-group-btn data-dwn">
-                  <button  ng-click="removeAssistant(cant)" ng-model="newEvent.minAttendants" ng-disabled="checkCantLower(1,cant)"  class="btn btn-default btn-info" data-dir="dwn">
+                  <button class="btn btn-warning" ng-click="removeAssistant(cant)" ng-model="newEvent.minAttendants" ng-disabled="checkCantLower(1,cant)"  class="btn btn-default btn-info" data-dir="dwn">
                      <span class="glyphicon glyphicon-minus"></span>
                   </button>
                </span>
@@ -99,7 +99,7 @@ float: left;">
                <input  ng-change="checkNumber(cant)" type="number" class="form-control text-center" ng-model="lugaresCantidades[cant]" value="1" >
 
                <span class="input-group-btn data-up">
-                  <button  ng-click="addAssistant(cant)" ng-model="newEvent.maxAttendants" ng-disabled="checkCantUpper(300,cant)" class="btn btn-default btn-info" data-dir="up">
+                  <button class="btn btn-warning" ng-click="addAssistant(cant)" ng-model="newEvent.maxAttendants" ng-disabled="checkCantUpper(300,cant)" class="btn btn-default btn-info" data-dir="up">
                      <span class="glyphicon glyphicon-plus"></span>
                   </button>
                </span>
@@ -108,11 +108,15 @@ float: left;">
       </div>
 
       <div class="form-group">
-         <label class="control-label col-sm-4" for="">Día y horario</label>
+         <label class="control-label col-sm-4" for="">Desde</label>
          <div class="small-5 columns">
             <input type="date" ng-model="newEvent.startDate"/>
             <input type="time" ng-model="newEvent.startHour"/>
          </div>
+      </div>
+	  
+      <div class="form-group">
+         <label class="control-label col-sm-4" for="">Hasta</label>
          <div class="small-5 columns">
             <input type="date" ng-model="newEvent.endDate" />
             <input type="time" ng-model="newEvent.endHour" />

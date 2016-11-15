@@ -26,6 +26,7 @@ angular.module('EventCMS')
                             $state.go('listComensal');
                         }
                     }
+					
 
                 });
 
@@ -38,8 +39,9 @@ angular.module('EventCMS')
 
         $scope.logout = function(){
             firebase.auth().signOut().then(function() {
-              // Sign-out successful.
-            }, function(error) {
+				
+            
+			}, function(error) {
               notificationService.error(errorMessage)
             });
         }
