@@ -9,6 +9,7 @@
     border-radius: 7px;
     background-color: white;
     margin-bottom: 20px;
+    padding: 0 0;
 }
 .eventTitle{
 	text-align: left;
@@ -18,7 +19,22 @@
 	font-weight: bold;
 	font-family: sans-serif;
 	font-variant: small-caps;
-    
+    background-color: white;
+    text-transform: none;
+}
+
+.lateralFilter{
+    float:left;
+    background-color: white;
+    border-radius: 7px;
+}
+
+.eventTitleStyle{
+    font-family: sans-serif;
+    font-variant: small-caps;
+    font-weight: bold;
+    color: #366da0;
+    text-transform: none;
 }
 
 .eventInfo{
@@ -41,24 +57,26 @@
     text-overflow: ellipsis;
 }
 
-.star-rating {
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-  
-  .star {
-    padding: 1px;
-    color: #ddd;
-    font-size: 20px;
-    text-shadow: .05em .05em #aaa;
-    list-style-type: none;
-    display: inline-block;
-    cursor: pointer;
+.footerEvent{
+    float:left;
+    text-align: left;
+    width: 100%;
+    margin-left: 10px;
+}
 
-    &.filled {
-      color: #fd0;
-    }
-  }
+.footerEventContainer{
+    float:left;
+    width: 20%!important;
+}
+
+.lateralContainer{
+    background-color: white;
+    margin-left: 20px;
+    width: 15%;
+    float: left;
+    border-radius: 7px;
+    height: 60%;
+}
 
 #location{
     background: url(common/sprite-icon-opt-6f2a07a8f5fbf730bc467167c01babf0.svg) no-repeat -9px -2529px;
@@ -74,30 +92,9 @@
 
 }
 
-.footerEvent{
-	float:left;
-	text-align: left;
-	width: 100%;
-	margin-left: 10px;
-}
-
-.footerEventContainer{
-	float:left;
-    width: 20%!important;
-}
-
 #buttonRegister{
     width: 22%;
     margin-left: 25px;
     margin-bottom: 25px;
     margin-top: -11px;
 }   
-
-.lateralContainer{
-    background-color: white;
-    margin-left: 20px;
-    width: 15%;
-    float: left;
-    border-radius: 7px;
-    height: 60%;
-}

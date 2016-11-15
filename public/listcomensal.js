@@ -11,6 +11,8 @@ angular.module('EventCMS')
         $log.info("stateparms", editEventId);
         // var userId = firebase.auth().currentUser.uid;
         $scope.fireBaseRef = firebase.database().ref('/events')
+
+        $scope.categories =['Bebidas','Cafetería','Calzones','Carnes','Celíacos','Chivitos','Comida Árabe','Comida Armenia','Comida China','Comida Japonesa','Comida Mexicana','Comida Peruana','Comida Vegetariana','Comida Venezolana','Desayunos','Empanadas','Ensaladas','Hamburguesas','Helados','Lehmeyun','Licuados y Jugos','Menú del día','Milanesas','Parrilla','Pastas','Pescados y Mariscos','Picadas','Pizzas','Postres','Sándwiches','Sushi','Tartas','Viandas y Congelados','Woks','Wraps']
         
         function updateEvents(){
 
