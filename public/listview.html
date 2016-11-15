@@ -1,7 +1,7 @@
 </br>
 </br>
 <div class="container" style="background-color: #eee;">
-  <div class="row">
+  <!--div class="row">
     <form class="form-horizontal">
       <div class="form-group">
          <label class="control-label col-sm-2">Filtro por Nombre</label>
@@ -14,8 +14,8 @@
          <label class="control-label col-sm-2">Filtro por Estado</label>
          <div class="col-sm-2">
             <select class="form-control col-sm-2 col-md-4" ng-model="eventFilter.status">
-               <option>open</option>
-               <option>closed</option>
+               <option>abierto</option>
+               <option>cerrado</option>
             </select>
          </div>
       </div>
@@ -34,7 +34,7 @@
         </div>
       </div>
     </form>
-  </div>
+  </div-->
 
    <!-- ***** lista de eventos ****** -->
    <div class="col-sm-6" style="width:70%;margin-left:20%;" ng-repeat="evento in events | filter:eventFilter| myfilter:dateFrom:dateTo">
@@ -75,11 +75,11 @@
           <p style="font-size: 10px; font-weight: bold; float: left; margin-left: 3px;">Categoría: </p>
           <p style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; font-family: Arial;"> {{evento.category}} </p> 
         </span>
-        <span id="attendants" class="eventData" style="width:18%">
+        <!--span id="attendants" class="eventData" style="width:18%">
           <i class="fa fa-users" aria-hidden="true" style="float: left;"></i>
           <p style="font-size: 10px; font-weight: bold; float: left; margin-left: 3px;">Asistentes: </p>
           <p style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; font-family: Arial;"> {{evento.attendants.length}} </p> 
-        </span>
+        </span-->
       </span>
       <span class="footerEvent">
       <span id="date" class="eventData" style="width:25%">
@@ -97,10 +97,6 @@
           <p style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; font-family: Arial;"> {{evento.status}} </p> 
         </span>
 
-         <button id="buttonRegister" class="btn btn-sm btn-default" ng-click="asistirEvento(evento)" ng-disabled="checkReserveButton(evento)"
-          style="margin-bottom: 10px; margin-right: 10px;">
-          Inscribir
-         </button>
       </span>
     </section>
     <!--Barra de progreso de que tan lleno esta un evento-->
