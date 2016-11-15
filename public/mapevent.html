@@ -11,7 +11,7 @@
 <body>
   <ng-map ng-if="events.length >0" zoom="15" center="current-position">
      <marker ng-repeat="event in events"  id="{{event.eventTitle}}" position="{{event.eventLocation.lat}},{{event.eventLocation.long}}" title="{{event.eventTitle}}" data="'hola'" uib-popover-template="'eventoInfo.html'"
-       popover-placement="right" on-click="pinClicked(event)" popover-trigger="'click'"  popover-animation="false"></marker>
+       popover-placement="right" on-click="pinClicked(evento)" popover-trigger="'click'"  popover-animation="false"></marker>
 </ng-map>
 
     <!--Inicializar los eventos, cargarlos desde firebase-->	
