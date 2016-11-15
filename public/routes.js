@@ -22,7 +22,7 @@ angular.module('EventCMS')
     })
     .state('mapEvent', {
         url: '/mapEvent',
-        templateUrl: 'mapEvent.html',
+        templateUrl: 'mapevent.html',
         controller: 'mapEventCtrl',
     })
     .state('login', {
