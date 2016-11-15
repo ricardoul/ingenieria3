@@ -128,9 +128,12 @@ angular.module('EventCMS')
        }
 	   
 	   	$scope.pinClicked = function(evento){
-			$scope.eventFilter=$scope.events[0].eventTitle;
+			//$scope.eventFilter=$scope.events[0].eventTitle;
 			//var vari=evento.$id;
-		//	$scope.eventFilter=evento.eventTitle;
+			var event=_.find($scope.events,function(it){
+				return evento.latLng.lat().toString()==it.eventLocation.lat.toString()})
+			
+			$scope.eventFilter=event.eventTitle;
 		}
         updateEvents()
 
