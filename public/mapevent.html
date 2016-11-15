@@ -10,9 +10,8 @@
 
 <body>
   <ng-map ng-if="events.length >0" zoom="15" center="current-position">
-     <marker ng-repeat="event in events" position="{{event.eventLocation.lat}},{{event.eventLocation.long}}" title="{{event.eventTitle}}" data="'hola'" uib-popover-template="'eventInfo.html'"
-       popover-placement="right" popover-trigger="'click'" popover-animation="false"></marker>
-
+     <marker ng-repeat="event in events"  id="{{event.eventTitle}}" position="{{event.eventLocation.lat}},{{event.eventLocation.long}}" title="{{event.eventTitle}}" data="'hola'" uib-popover-template="'eventoInfo.html'"
+       popover-placement="right" on-click="pinClicked(event)" popover-trigger="'click'"  popover-animation="false"></marker>
 </ng-map>
 
     <!--Inicializar los eventos, cargarlos desde firebase-->	
@@ -20,24 +19,6 @@
             <p>{{selectedEvent.category}}</p>
             <p>{{selectedEvent.description}}</p>
       
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-6" ng-repeat="event in Events">
-            <!--No deberia repetirse para todos los eventos sino para el evento que esta seleccionado-->
-            <h3>{{selectedEvent.eventTitle}}</h3>
-            <p>{{selectedEvent.category}}</p>
-            <p>{{selectedEvent.description}}</p>
-            <!--Falta la direccion del evento-->
-            <p>Comensales<p>
-            <button ng-click="asistirEvento()">Reservar</button>
-            <!--Barra de progreso de que tan lleno esta un evento-->
-
-    <div id="myProgress">
-    <div id="myBar">
-    <div id="label">
-    </div>
-    </div>
-    </div>
 
     <br>
 <script type="text/ng-template" id="eventInfo.html">
@@ -45,23 +26,96 @@
               {{event}}
           </ul>
     </script>
+	
+	<div class="jumbotron text-center" id="map" style="min-height:100%"> 
+  <!--input ng-model="eventFilter.attendants" type="text">
+  <button ng-click="eventFilter.attendants = undefined">Limpiar filtro</button>
+  
+  <!--
+  <div class="lateralFilter">
+    <ul ng-repeat="cat in categories" style="margin-left: 0px">
+      <li ng-repeat="cat in categories" ng-model="eventFilter.category">
+        {{cat}}
+      </li>
+    </ul>
+  </div>
+  -->
+    <input ng-model="eventFilter.eventTitle" type="text">
+  <button ng-click="eventFilter.eventTitle = undefined">Limpiar filtro</button>
+  
+  </br>
+  <div class="col-sm-6" style="width:70%;margin-left:20%;" ng-repeat="evento in events | filter:eventFilter">
+    <section id="eventsSection" class="eventContainer">      
+      <span>
+        <div class="eventTitle">
+          <h3 class="eventTitleStyle">
+            {{evento.eventTitle}}
+          </h3>
+        </div>
+      </span>
+      <span class="eventInfo">
+        <span id="price" class="eventData" style="width:10%">
+            <i class="fa fa-usd" aria-hidden="true" style="float: left; margin-right: 7px"></i>
+            <p style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; font-family: Arial; "> {{evento.eventPrice}} </p> 
+        </span>
+        <span id="cooker" class="eventData" style="width:30%">
+          <!--<i class="fa fa-map-marker" aria-hidden="true" style="float: left;"></i>-->
+          <p style="font-size: 10px; font-weight: bold; float: left; margin-left: 3px;">Cocinero: </p>
+          <p style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; font-family: Arial;"> {{evento.cooker}} </p>
+        </span>
+        <!--<span id="rating" class="eventData" style="width:35%">
+          <label for="input-2" class="control-label">Rate This</label>
+          <input id="input-2" name="input-2" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1">
+          </span>
+          <p style="font-size: 10px; font-weight: bold; float: left; margin-left: 3px;">Valoración: </p>
+          <p style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; "> las estrellitas </p>
+        </span>-->
+      </span>
+      <span class="eventInfo">
+        <span id="location" class="eventData" style="width:35%">
+          <i class="fa fa-map-marker" aria-hidden="true" style="float: left;"></i>
+          <p style="font-size: 10px; font-weight: bold; float: left; margin-left: 3px;">Lugar: </p>
+          <p ng-model="numLimit" style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; font-family: Arial;"> {{evento.eventLocation.street}} </p>
+        </span>
+        <span id="category" class="eventData" style="width:28%">
+          <i class="fa fa-tag" aria-hidden="true" style="float: left;"></i>
+          <p style="font-size: 10px; font-weight: bold; float: left; margin-left: 3px;">Categoría: </p>
+          <p style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; font-family: Arial;"> {{evento.category}} </p> 
+        </span>
+        <span id="attendants" class="eventData" style="width:18%">
+          <i class="fa fa-users" aria-hidden="true" style="float: left;"></i>
+          <p style="font-size: 10px; font-weight: bold; float: left; margin-left: 3px;">Asistentes: </p>
+          <p style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; font-family: Arial;"> {{evento.attendants.length}} </p> 
+        </span>
+      </span>
+      <span class="footerEvent">
+      <span id="date" class="eventData" style="width:25%">
+          <i class="fa fa-calendar-o" aria-hidden="true" style="float: left;"></i>
+          <p style="font-size: 10px; font-weight: bold; float: left; margin-left: 3px;">Inicio: </p>
+          <p style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; font-family: Arial;"> {{evento.startDate | date : 'MMM d, y hh:mm'}} </p> 
+        </span>
+        <span id="date" class="eventData" style="width:25%">
+          <p style="font-size: 10px; font-weight: bold; float: left; margin-left: 3px;">Fin: </p>
+          <p style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; font-family: Arial;"> {{evento.endDate | date : 'MMM d, y hh:mm'}} </p> 
+        </span>
+        <span id="status" class="eventData" style="width:18%">
+          <i class="fa fa-toggle-on" aria-hidden="true" style="float: left;"></i>
+          <p style="font-size: 10px; font-weight: bold; float: left; margin-left: 3px;">Estado: </p>
+          <p style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; font-family: Arial;"> {{evento.status}} </p> 
+        </span>
 
-    </div>
-        <div class="col-sm-6">
-                <h3>Mis proximos eventos</h3>
-				
-				<div class="list-group">
-					<div class="col-sm-6" ng-repeat="event in Events">
-						<button ng-click="seleccionarEvento()" class="list-group-item">{{event.eventTitle}}</button>
-					</div>
-				</div>
-				
-                <div class="list-group">
-					<button ng-click="seleccionarEvento()" class="list-group-item">Evento</button>
-					<a href="#" class="list-group-item list-group-item-success">Evento Lunes 4</a>
-				</div>
-		</div>
-		
+         <button id="buttonRegister" class="btn btn-sm btn-default" ng-click="asistirEvento(evento)" ng-disabled="checkReserveButton(evento)"
+          style="margin-bottom: 10px; margin-right: 10px;">
+          Inscribir
+         </button>
+      </span>
+    </section>
+    <!--Barra de progreso de que tan lleno esta un evento-->
+  </div>
+</div>
+
+
+
 
 </body>
 </html>
