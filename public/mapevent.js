@@ -24,9 +24,8 @@ angular.module('EventCMS')
 	   	$scope.pinClicked = function(evento){
 			$scope.eventFilter=$scope.events[0].eventTitle;
 			//var vari=evento.$id;
-			$scope.eventFilter=evento.eventTitle;
+		//	$scope.eventFilter=evento.eventTitle;
 		}
-
         updateEvents()
 
         $scope.events = [

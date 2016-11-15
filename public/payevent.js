@@ -6,20 +6,18 @@ angular.module('EventCMS')
         $log.info("ListCtrl ran");
 
         //create Firebase events firebaseArray
-        $scope.event = [{"id":"algo"}]
+        $scope.event = [{"eventTitle":$stateParams.eventTitle, eventPrice:$stateParams.eventPrice, attendantsLength:$stateParams.eventAttentands}]
        // var userId = firebase.auth().currentUser.uid;
        var userId = "laca"
 
 
 	   function updateEvents(){
-		   	firebase.database().ref('events/'+ $stateParams.eventId).once('value').then(function(snapshot) {
-			  	$scope.event = snapshot.val()
-			  	$scope.event.totalPrice =$scope.event.attendants.length * parseFloat($scope.event.eventPrice) * 0.10
-			  	$scope.$apply()
-			  	notificationService.success("Costo calculado correctamente!")
-			  // ...
-			});
+	   	
 	   }
+
+	   $timeout(function(){
+	   		notificationService.success("Costo calculado correctamente!")
+		},20)
 
 	   updateEvents()
 	   $timeout(function(){
