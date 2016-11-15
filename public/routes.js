@@ -50,9 +50,9 @@ angular.module('EventCMS')
         url: '/about',
         templateUrl: 'about.html'
     })
-    .state('payEvent', {
-        url: '/payEvent',
-        templateUrl: 'payEvent.html',
+    .state('payevent', {
+        url: '/payevent/:eventId',
+        templateUrl: 'payevent.html',
         controller: 'PayEventCtrl'
     })
 });
