@@ -6,7 +6,7 @@ angular.module('EventCMS')
         $log.info("ListCtrl ran");
 
         //create Firebase events firebaseArray
-        $scope.event = [{"eventTitle":$stateParams.eventTitle, eventPrice:$stateParams.eventPrice, attendantsLength:$stateParams.eventAttentands}]
+        $scope.event = {"eventTitle":$stateParams.eventName, eventPrice: parseInt($stateParams.eventPrice), attendantsLength: parseInt($stateParams.eventAttentands), totalPrice: parseInt($stateParams.eventPrice)* parseInt($stateParams.eventAttentands) *0.10}
        // var userId = firebase.auth().currentUser.uid;
        var userId = "laca"
 
