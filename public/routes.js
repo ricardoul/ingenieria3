@@ -46,9 +46,9 @@ angular.module('EventCMS')
         templateUrl: 'register.html',
         controller: 'RegisterCtrl'
     })
-    .state('about', {
-        url: '/about',
-        templateUrl: 'about.html'
+    .state('logOut', {
+        url: '/',
+        controller: 'LogoutCtrl',
     })
     .state('payevent', {
         url: '/payevent/:eventName/:eventAttentands/:eventPrice',

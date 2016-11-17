@@ -2,7 +2,7 @@
 </br>
 <div class="container" style="background-color: #eee; width: 100%">
   <div class="row">
-    <form class="form-horizontal">
+    <!--form class="form-horizontal">
       <div class="form-group">
          <label class="control-label col-sm-2">Filtro por Nombre</label>
          <div class="col-sm-5">
@@ -34,10 +34,10 @@
         </div>
       </div>
     </form>
-  </div>
+  </div-->
 
    <!-- ***** lista de eventos ****** -->
-   <div class="col-sm-6" style="width:70%;margin-left:20%;" ng-repeat="evento in events | filter:eventFilter| myfilter:dateFrom:dateTo">
+   <div class="col-sm-6" style="width:70%;margin-left:20%;margin-top:10px" ng-repeat="evento in events">
     <section id="eventsSection" class="eventContainer">      
       <span>
         <div class="eventTitle">
@@ -51,11 +51,10 @@
             <i class="fa fa-usd" aria-hidden="true" style="float: left; margin-right: 7px"></i>
             <p style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; font-family: Arial; "> {{evento.eventPrice}} </p> 
         </span>
-        <span id="cooker" class="eventData" style="width:30%">
-          <!--<i class="fa fa-map-marker" aria-hidden="true" style="float: left;"></i>-->
+        <!--span id="cooker" class="eventData" style="width:30%">
           <p style="font-size: 10px; font-weight: bold; float: left; margin-left: 3px;">Cocinero: </p>
           <p style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; font-family: Arial;"> {{evento.cooker}} </p>
-        </span>
+        </span-->
         <!--<span id="rating" class="eventData" style="width:35%">
           <label for="input-2" class="control-label">Rate This</label>
           <input id="input-2" name="input-2" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1">
@@ -96,8 +95,9 @@
           <p style="font-size: 10px; font-weight: bold; float: left; margin-left: 3px;">Estado: </p>
           <p style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; font-family: Arial;"> {{evento.status}} </p> 
         </span>
-        <a ng-href="/payevent/{{evento.eventName}}/{{evento.attendants.length}}/{{evento.eventPrice}}">Pagar</a>
-
+        <span id="status" class="eventData" style="width:18%">
+          <a ng-href="/payevent/{{evento.eventName}}/{{evento.attendants.length}}/{{evento.eventPrice}}">Pagar</a>
+        </span>
       </span>
     </section>
     <!--Barra de progreso de que tan lleno esta un evento-->

@@ -40,8 +40,8 @@
       </ul>
     </div>
     -->
-    <div class="text-center">
-      <input ng-model="eventFilter.eventTitle" type="text">
+    <div style="margin-left:21%;margin-bottom:10px">
+      <input ng-model="eventFilter.eventTitle" type="text" placeholder="Título evento">
       <button ng-click="eventFilter.eventTitle = undefined">Limpiar filtro</button>
     </div>
 
@@ -62,7 +62,7 @@
           <span id="cooker" class="eventData" style="width:30%">
             <!--<i class="fa fa-map-marker" aria-hidden="true" style="float: left;"></i>-->
             <p style="font-size: 10px; font-weight: bold; float: left; margin-left: 3px;">Cocinero: </p>
-            <p style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; font-family: Arial;"> {{evento.cooker}} </p>
+            <p style="font-size: 10px; margin-left: 3px; white-space: pre-wrap; font-family: Arial;"> {{evento.eventCooker}} </p>
           </span>
           <!--<span id="rating" class="eventData" style="width:35%">
             <label for="input-2" class="control-label">Rate This</label>

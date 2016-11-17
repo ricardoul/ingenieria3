@@ -84,6 +84,7 @@
     <script src="/listcomensal.js"></script>
     <script src="/login.js"></script>
     <script src="/payevent.js"></script>
+    <script src="/logout.js"></script>
     <script src="/routes.js"></script>
 
 
@@ -125,13 +126,19 @@
                         <a  class="item" ui-sref="listComensal">Lista de eventos</a>
                     </li>-->
                     <li>
-                        <a  class="item" ui-sref="addEvent">Agregar un evento</a>
+                        <a  class="item" ui-sref="addEvent"  ng-if="isLogin == true">Agregar un evento</a>
                     </li>
                     <li>
-                        <a class="item" ui-sref="mapEvent" ng-if="isComensal == true">Lista de eventos</a>
+                        <a class="item" ui-sref="mapEvent">Lista de eventos</a>
+                    </li>
+                    <li>
+                        <a class="item" ui-sref="eventList" ng-if="isCocinero == true">Mis eventos</a>
                     </li>
                     <li>
                         <a class="item" ui-sref="login">Login</a>
+                    </li>
+                    <li>
+                        <a class="item" ui-sref="logOut" ng-if="isLogin == true">Logout</a>
                     </li>
                 </ul>
             </div>

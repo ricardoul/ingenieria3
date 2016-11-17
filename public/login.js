@@ -6,6 +6,8 @@ angular.module('EventCMS')
 
         $log.info("LoginCtrl ran");
 
+        $rootScope.isLogin = false;
+
         $scope.login = function(){
             firebase.auth().signInWithEmailAndPassword($scope.username, $scope.password1).then(function() {
                 notificationService.success("Login "+ $scope.username +" realizado correctamente");
@@ -13,6 +15,7 @@ angular.module('EventCMS')
                 var userId = firebase.auth().currentUser.uid;
 
                 $rootScope.userId   = userId;
+                $rootScope.isLogin  = true;
 
                 firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
                 
@@ -20,10 +23,12 @@ angular.module('EventCMS')
                     $rootScope.userType = userData.info.type;
 
                     if (userData.info.type === 'Cocinero'){
+                        $rootScope.isCocinero = true;
                         $state.go('eventList');
                     } else {
                         if (userData.info.type === 'Comensal'){
-                            $state.go('listComensal');
+                            $rootScope.isCocinero = false;
+                            $state.go('mapEvent');
                         }
                     }
 					
@@ -80,10 +85,12 @@ angular.module('EventCMS')
 
                 // Redireccionar a página lista de eventos!!!
                 if ($scope.newUser.type === "Cocinero"){
+                    $rootScope.isCocinero = true;
                     $state.go('eventList');
                 } else{
                     if ($scope.newUser.type === 'Comensal'){
-                        $state.go('listComensal')
+                        $rootScope.isCocinero = false;
+                        $state.go('mapEvent')
                     }
                 }
 
