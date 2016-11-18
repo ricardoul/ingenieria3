@@ -35,6 +35,11 @@ angular.module('EventCMS')
         templateUrl: 'listcomensal.html',
         controller: 'ListComensalCtrl',
     })
+    .state('misEventos', {
+        url: '/miseventos',
+        templateUrl: 'miseventos.html',
+        controller: 'MisEventosCtrl',
+    })
     .state('editEvent', {
         url: '/edit',
         templateUrl: 'editevent.html',

@@ -79,6 +79,7 @@ angular.module('EventCMS')
                 var updates = {};
 
                 $rootScope.userId   = userId;
+                $rootScope.isLogin  = true;
 
                 updates['/users/'+userId+'/info/'] = $scope.newUser;
 
@@ -86,10 +87,12 @@ angular.module('EventCMS')
                 // Redireccionar a página lista de eventos!!!
                 if ($scope.newUser.type === "Cocinero"){
                     $rootScope.isCocinero = true;
+                    $rootScope.userType = "Cocinero";
                     $state.go('eventList');
                 } else{
                     if ($scope.newUser.type === 'Comensal'){
-                        $rootScope.isCocinero = false;
+                        $rootScope.isCocinero = false; 
+                        $rootScope.userType = "Comensal";
                         $state.go('mapEvent')
                     }
                 }

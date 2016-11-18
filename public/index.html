@@ -85,6 +85,7 @@
     <script src="/login.js"></script>
     <script src="/payevent.js"></script>
     <script src="/logout.js"></script>
+    <script src="/miseventos.js"></script>
     <script src="/routes.js"></script>
 
 
@@ -133,6 +134,9 @@
                     </li>
                     <li>
                         <a class="item" ui-sref="eventList" ng-if="isCocinero == true">Mis eventos</a>
+                    </li>
+                    <li>
+                        <a class="item" ui-sref="misEventos" ng-if="isCocinero == false && isLogin == true">Mis eventos</a>
                     </li>
                     <li>
                         <a class="item" ui-sref="login">Login</a>
