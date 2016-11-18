@@ -11,7 +11,7 @@ angular.module('EventCMS')
     // $urlRouterProvider.otherwise('/');
     $stateProvider
     .state('eventList', {
-        url: '/',
+        url: '/listview',
         templateUrl: 'listview.html',
         controller: 'ListCtrl',
     })
@@ -19,6 +19,11 @@ angular.module('EventCMS')
         url: '/add',
         templateUrl: 'addevent.html',
         controller: 'AddCtrl',
+    })
+    .state('mapEvent', {
+        url: '/mapEvent',
+        templateUrl: 'mapevent.html',
+        controller: 'mapEventCtrl',
     })
     .state('login', {
         url: '/login',
@@ -29,6 +34,11 @@ angular.module('EventCMS')
         url: '/list_comensal',
         templateUrl: 'listcomensal.html',
         controller: 'ListComensalCtrl',
+    })
+    .state('misEventos', {
+        url: '/miseventos',
+        templateUrl: 'miseventos.html',
+        controller: 'MisEventosCtrl',
     })
     .state('editEvent', {
         url: '/edit',
@@ -41,8 +51,13 @@ angular.module('EventCMS')
         templateUrl: 'register.html',
         controller: 'RegisterCtrl'
     })
-    .state('about', {
-        url: '/about',
-        templateUrl: 'about.html'
+    .state('logOut', {
+        url: '/',
+        controller: 'LogoutCtrl',
+    })
+    .state('payevent', {
+        url: '/payevent/:eventName/:eventAttentands/:eventPrice',
+        templateUrl: 'payevent.html',
+        controller: 'PayEventCtrl'
     })
 });

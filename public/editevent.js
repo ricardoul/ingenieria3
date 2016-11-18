@@ -85,6 +85,7 @@ angular.module('EventCMS')
                 category: $scope.event.category,
                 description: $scope.event.description,
                 featuredFlag: $scope.event.featuredFlag,
+                attendants: [],
                 // createdAt:  don't need to update this property
                 updatedAt: unixCurrent,
             };
@@ -92,6 +93,21 @@ angular.module('EventCMS')
             //use firebase 'update' method to save event data
             //onComplete is a callback with Firebase success/error message on data write
             ref.child(editEventId).update(updatedEvent,onComplete);
+        };
+		
+		//Deletes function delete the event in Firebase
+        $scope.deleteEvent = function() {
+				ref.child(editEventId).remove();
+        };
+		
+		//Enables or disables the Delete botton
+        $scope.enableDelete = function() {
+			if(evento.attendants.length < event.minAttendants)
+			{
+				document.getElementById("delete").disabled = true;
+			}else{
+				document.getElementById("delete").disabled = false;
+			}
         };
 
         //setup alerts in controller scope

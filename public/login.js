@@ -6,13 +6,48 @@ angular.module('EventCMS')
 
         $log.info("LoginCtrl ran");
 
+        $rootScope.isLogin = false;
+
         $scope.login = function(){
             firebase.auth().signInWithEmailAndPassword($scope.username, $scope.password1).then(function() {
-                notificationService.success("Login "+ $scope.username +" correctamente")
+                notificationService.success("Login "+ $scope.username +" realizado correctamente");
+                
+                var userId = firebase.auth().currentUser.uid;
+
+                $rootScope.userId   = userId;
+                $rootScope.isLogin  = true;
+
+                firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+                
+                    var userData = snapshot.val();
+                    $rootScope.userType = userData.info.type;
+
+                    if (userData.info.type === 'Cocinero'){
+                        $rootScope.isCocinero = true;
+                        $state.go('eventList');
+                    } else {
+                        if (userData.info.type === 'Comensal'){
+                            $rootScope.isCocinero = false;
+                            $state.go('mapEvent');
+                        }
+                    }
+					
+
+                });
+
             }, function(error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
-                notificationService.error(errorMessage)
+                notificationService.error("Usuario y/o contraseña incorrecta");
+            });
+        }
+
+        $scope.logout = function(){
+            firebase.auth().signOut().then(function() {
+				
+            
+			}, function(error) {
+              notificationService.error(errorMessage)
             });
         }
 
@@ -41,17 +76,34 @@ angular.module('EventCMS')
                 notificationService.success("Cuenta "+ $scope.username +" creada correctamente")
 
                 var userId = firebase.auth().currentUser.uid;
-   
                 var updates = {};
+
+                $rootScope.userId   = userId;
+                $rootScope.isLogin  = true;
+
                 updates['/users/'+userId+'/info/'] = $scope.newUser;
 
-                notificationService.success("Usuario creado");
+
+                // Redireccionar a página lista de eventos!!!
+                if ($scope.newUser.type === "Cocinero"){
+                    $rootScope.isCocinero = true;
+                    $rootScope.userType = "Cocinero";
+                    $state.go('eventList');
+                } else{
+                    if ($scope.newUser.type === 'Comensal'){
+                        $rootScope.isCocinero = false; 
+                        $rootScope.userType = "Comensal";
+                        $state.go('mapEvent')
+                    }
+                }
+
+                //notificationService.success("Usuario creado");
                 return firebase.database().ref().update(updates);
 
             }, function(error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
-                notificationService.error(errorMessage)
+                notificationService.error(errorMessage);
             });
 
         }
